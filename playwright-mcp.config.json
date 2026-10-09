@@ -1,0 +1,21 @@
+{
+  "browser": {
+    "browserName": "chromium",
+    "isolated": true,
+    "launchOptions": {
+      "channel": "chrome",
+      "args": [
+        "--use-fake-ui-for-media-stream",
+        "--use-fake-device-for-media-stream"
+      ]
+    },
+    "contextOptions": {
+      "viewport": { "width": 1366, "height": 900 },
+      "permissions": ["geolocation", "camera"],
+      "geolocation": { "latitude": 13.0827, "longitude": 80.2707 },
+      "locale": "en-IN",
+      "timezoneId": "Asia/Kolkata"
+    }
+  },
+  "outputDir": ".playwright-mcp"
+}

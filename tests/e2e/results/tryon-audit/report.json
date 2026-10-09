@@ -1,0 +1,1265 @@
+{
+  "summary": {
+    "products": 30,
+    "judged": 30,
+    "pass": 18,
+    "partial": 12,
+    "fail": 0,
+    "blocked": 0,
+    "skipped": 0,
+    "median_cut_ms": 1601,
+    "by_kind": {
+      "t-shirt men": {
+        "pass": 2,
+        "partial": 0,
+        "fail": 0,
+        "blocked": 0
+      },
+      "shirt men": {
+        "pass": 2,
+        "partial": 0,
+        "fail": 0,
+        "blocked": 0
+      },
+      "kurta men": {
+        "pass": 1,
+        "partial": 1,
+        "fail": 0,
+        "blocked": 0
+      },
+      "blazer men": {
+        "pass": 2,
+        "partial": 0,
+        "fail": 0,
+        "blocked": 0
+      },
+      "hoodie men": {
+        "pass": 2,
+        "partial": 0,
+        "fail": 0,
+        "blocked": 0
+      },
+      "jeans men": {
+        "pass": 0,
+        "partial": 2,
+        "fail": 0,
+        "blocked": 0
+      },
+      "trousers men": {
+        "pass": 0,
+        "partial": 2,
+        "fail": 0,
+        "blocked": 0
+      },
+      "shorts men": {
+        "pass": 1,
+        "partial": 1,
+        "fail": 0,
+        "blocked": 0
+      },
+      "dress women": {
+        "pass": 2,
+        "partial": 0,
+        "fail": 0,
+        "blocked": 0
+      },
+      "kurta women": {
+        "pass": 2,
+        "partial": 0,
+        "fail": 0,
+        "blocked": 0
+      },
+      "top women": {
+        "pass": 2,
+        "partial": 0,
+        "fail": 0,
+        "blocked": 0
+      },
+      "skirt women": {
+        "pass": 1,
+        "partial": 1,
+        "fail": 0,
+        "blocked": 0
+      },
+      "saree": {
+        "pass": 0,
+        "partial": 2,
+        "fail": 0,
+        "blocked": 0
+      },
+      "jeans women": {
+        "pass": 0,
+        "partial": 2,
+        "fail": 0,
+        "blocked": 0
+      },
+      "sunglasses": {
+        "pass": 0,
+        "partial": 0,
+        "fail": 0,
+        "blocked": 0
+      },
+      "cap": {
+        "pass": 1,
+        "partial": 1,
+        "fail": 0,
+        "blocked": 0
+      }
+    }
+  },
+  "rows": [
+    {
+      "kind": "t-shirt men",
+      "id": "mcr:8848947708124",
+      "title": "Python Plain Maroon Color T-Shirt - 70005",
+      "store": "MCR",
+      "image": "https://cdn.shopify.com/s/files/1/0698/5518/3068/files/02_bd8627d5-82a8-483f-98e3-417650dc6619.jpg?v=1790925582&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "polo t-shirt",
+        "region": "upper",
+        "shape": "fitted",
+        "sleeves": "short",
+        "collar": "polo collar",
+        "length": "hip",
+        "color": "maroon",
+        "texture": "cotton jersey",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 9893,
+      "drawn": {
+        "front": 0.093,
+        "side": 0.076
+      }
+    },
+    {
+      "kind": "t-shirt men",
+      "id": "bonkerscorner:15178232693100",
+      "title": "Rider 23 Racing Knit Polo",
+      "store": "Bonkers Corner",
+      "image": "https://cdn.shopify.com/s/files/1/0653/0541/1684/files/84.png?v=1782477762&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "knit polo shirt",
+        "region": "upper",
+        "shape": "regular",
+        "sleeves": "long",
+        "collar": "polo collar",
+        "length": "hip",
+        "color": "charcoal black",
+        "texture": "ribbed knit",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1601,
+      "drawn": {
+        "front": 0.147,
+        "side": 0.115
+      }
+    },
+    {
+      "kind": "shirt men",
+      "id": "mcr:9332628029660",
+      "title": "Opera Shirt Full Sleeve - 96008",
+      "store": "MCR",
+      "image": "https://cdn.shopify.com/s/files/1/0698/5518/3068/files/001_ccea3c64-20f9-44fc-a37f-a4b54f06dd91.jpg?v=1790850208&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "button-down shirt",
+        "region": "upper",
+        "shape": "regular",
+        "sleeves": "long",
+        "collar": "shirt collar",
+        "length": "hip",
+        "color": "multi-color striped",
+        "texture": "woven cotton",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 2327,
+      "drawn": {
+        "front": 0.12,
+        "side": 0.095
+      }
+    },
+    {
+      "kind": "shirt men",
+      "id": "tistabene:8453666046127",
+      "title": "Pink Sanganeri Shirt",
+      "store": "Tistabene",
+      "image": "https://cdn.shopify.com/s/files/1/0565/8050/5775/files/MSH-2849_4.jpg?v=1766827246&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "printed shirt",
+        "region": "upper",
+        "shape": "regular",
+        "sleeves": "short",
+        "collar": "shirt collar",
+        "length": "hip",
+        "color": "pink",
+        "texture": "smooth woven fabric",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1944,
+      "drawn": {
+        "front": 0.115,
+        "side": 0.093
+      }
+    },
+    {
+      "kind": "kurta men",
+      "id": "jadeblue:9800742863154",
+      "title": "Teal Kurta | The Kurta Company",
+      "store": "JadeBlue",
+      "image": "https://cdn.shopify.com/s/files/1/0738/7568/5682/files/6H7A7479-2.jpg?v=1742984766&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "teal kurta",
+        "region": "upper",
+        "shape": "straight",
+        "sleeves": "long",
+        "collar": "mandarin collar",
+        "length": "knee",
+        "color": "teal",
+        "texture": "textured woven fabric",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftAnkle",
+        "rightAnkle",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1673,
+      "drawn": {
+        "front": 0.176,
+        "side": 0.139
+      }
+    },
+    {
+      "kind": "kurta men",
+      "id": "tistabene:7831509827759",
+      "title": "Black Chikankari Embroidered Cotton Men's Kurta",
+      "store": "Tistabene",
+      "image": "https://cdn.shopify.com/s/files/1/0565/8050/5775/files/KRT-0395E.jpg?v=1757076921&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "embroidered kurta",
+        "region": "upper",
+        "shape": "straight",
+        "sleeves": "long",
+        "collar": "mandarin collar",
+        "length": "knee",
+        "color": "black",
+        "texture": "embroidered cotton",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "A sleeve is missing: an elbow wasn't found in the photo"
+      ],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftAnkle",
+        "rightAnkle",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1605,
+      "drawn": {
+        "front": 0.149,
+        "side": 0.12
+      }
+    },
+    {
+      "kind": "blazer men",
+      "id": "vastramay:8247418421506",
+      "title": "Men's Black Embellished Blazer",
+      "store": "Vastramay",
+      "image": "https://cdn.shopify.com/s/files/1/1147/1390/files/VSHRMCT018BL_1.jpg?v=1753868751&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "formal blazer",
+        "region": "upper",
+        "shape": "fitted",
+        "sleeves": "long",
+        "collar": "lapel",
+        "length": "hip",
+        "color": "black",
+        "texture": "sequin embellished",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1521,
+      "drawn": {
+        "front": 0.144,
+        "side": 0.114
+      }
+    },
+    {
+      "kind": "blazer men",
+      "id": "rarerabbit:7244061311047",
+      "title": "Rare Rabbit Men's Linol Khaki Linen Blend Fabric Lapel Neck Tailored Fit Plain Blazer",
+      "store": "Rare Rabbit",
+      "image": "https://cdn.shopify.com/s/files/1/0752/6435/files/RR255513_1_-hm_58fc5f1b-20ce-49d4-90df-bd22ee9022bc.webp?v=1773039561&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "tailored blazer",
+        "region": "upper",
+        "shape": "fitted",
+        "sleeves": "long",
+        "collar": "lapel",
+        "length": "hip",
+        "color": "khaki green",
+        "texture": "linen blend",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1429,
+      "drawn": {
+        "front": 0.146,
+        "side": 0.114
+      }
+    },
+    {
+      "kind": "hoodie men",
+      "id": "tistabene:7425219756207",
+      "title": "Multi Color Block Hoodie",
+      "store": "Tistabene",
+      "image": "https://cdn.shopify.com/s/files/1/0565/8050/5775/files/HOD-0021A_4ba190d2-4262-4c15-bdff-2ef02a83d84a.jpg?v=1757079530&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "multi-color block hoodie",
+        "region": "upper",
+        "shape": "regular",
+        "sleeves": "long",
+        "collar": "hooded",
+        "length": "waist",
+        "color": "white, yellow, black",
+        "texture": "smooth cotton blend",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1437,
+      "drawn": {
+        "front": 0.116,
+        "side": 0.096
+      }
+    },
+    {
+      "kind": "hoodie men",
+      "id": "andamen:9165033832661",
+      "title": "Terracotta Rust Cotton Blend Hoodie",
+      "store": "Andamen",
+      "image": "https://cdn.shopify.com/s/files/1/0618/3183/9957/files/01_448a17b0-aa98-4721-b1e5-48d4e180ac02.jpg?v=1762408950&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "hooded sweatshirt",
+        "region": "upper",
+        "shape": "regular",
+        "sleeves": "long",
+        "collar": "hooded",
+        "length": "hip",
+        "color": "terracotta rust",
+        "texture": "soft cotton blend",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1277,
+      "drawn": {
+        "front": 0.14,
+        "side": 0.111
+      }
+    },
+    {
+      "kind": "jeans men",
+      "id": "andamen:8919075061973",
+      "title": "Onyx Black Jeans",
+      "store": "Andamen",
+      "image": "https://cdn.shopify.com/s/files/1/0618/3183/9957/files/01_c632d452-aaca-4651-9bfa-2eef852f292f.jpg?v=1743149400&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "wide-leg jeans",
+        "region": "lower",
+        "shape": "relaxed",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "ankle",
+        "color": "onyx black",
+        "texture": "denim texture",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Placed by its outline, as one flat piece: sleeves and legs don't move separately and it doesn't turn"
+      ],
+      "source": "flat",
+      "anchors": [
+        "leftHip",
+        "rightHip",
+        "hem"
+      ],
+      "ms": 1015,
+      "drawn": {
+        "front": 0.117,
+        "side": 0.09
+      }
+    },
+    {
+      "kind": "jeans men",
+      "id": "rigo:7265180876887",
+      "title": "Lightly Faded Tapered Jeans",
+      "store": "Rigo",
+      "image": "https://cdn.shopify.com/s/files/1/0012/8935/5319/files/JNS03241004MainPic.jpg?v=1745843793&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "tapered jeans",
+        "region": "lower",
+        "shape": "fitted",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "ankle",
+        "color": "dark charcoal grey",
+        "texture": "denim with light fading",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Placed by its outline, as one flat piece: sleeves and legs don't move separately and it doesn't turn"
+      ],
+      "source": "flat",
+      "anchors": [
+        "leftHip",
+        "rightHip",
+        "hem"
+      ],
+      "ms": 1066,
+      "drawn": {
+        "front": 0.099,
+        "side": 0.076
+      }
+    },
+    {
+      "kind": "trousers men",
+      "id": "andamen:9272279924949",
+      "title": "Mist Beige Linen Trousers",
+      "store": "Andamen",
+      "image": "https://cdn.shopify.com/s/files/1/0618/3183/9957/files/01_38405e98-95ec-4b7e-9907-5b1c8cb7037c.jpg?v=1787770776&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "linen trousers",
+        "region": "lower",
+        "shape": "straight",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "ankle",
+        "color": "mist beige",
+        "texture": "linen weave",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Placed by its outline, as one flat piece: sleeves and legs don't move separately and it doesn't turn"
+      ],
+      "source": "flat",
+      "anchors": [
+        "leftHip",
+        "rightHip",
+        "hem"
+      ],
+      "ms": 1085,
+      "drawn": {
+        "front": 0.101,
+        "side": 0.077
+      }
+    },
+    {
+      "kind": "trousers men",
+      "id": "campussutra:9011647676674",
+      "title": "Cuffed Pleated Tailored Trousers",
+      "store": "Campus Sutra",
+      "image": "https://cdn.shopify.com/s/files/1/0457/8246/6720/files/CSMSSTR8281_1_dab57ff4-f7d1-4cba-bfb1-b36b3cbf39c4.jpg?v=1746704120&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "pleated tailored trousers",
+        "region": "lower",
+        "shape": "straight",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "ankle",
+        "color": "off-white",
+        "texture": "textured weave",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Placed by its outline, as one flat piece: sleeves and legs don't move separately and it doesn't turn"
+      ],
+      "source": "flat",
+      "anchors": [
+        "leftHip",
+        "rightHip",
+        "hem"
+      ],
+      "ms": 1248,
+      "drawn": {
+        "front": 0.109,
+        "side": 0.083
+      }
+    },
+    {
+      "kind": "shorts men",
+      "id": "uathayam:6781805297727",
+      "title": "Shorts - Black Knitted Shorts For Mens | Ariser",
+      "store": "Uathayam",
+      "image": "https://cdn.shopify.com/s/files/1/0080/4844/3455/files/KS25505_6.jpg?v=1741867121&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "knitted shorts",
+        "region": "lower",
+        "shape": "regular",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "thigh",
+        "color": "black",
+        "texture": "knitted fabric",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Placed by its outline, as one flat piece: sleeves and legs don't move separately and it doesn't turn"
+      ],
+      "source": "flat",
+      "anchors": [
+        "leftHip",
+        "rightHip",
+        "hem"
+      ],
+      "ms": 1167,
+      "drawn": {
+        "front": 0.04,
+        "side": 0.031
+      }
+    },
+    {
+      "kind": "shorts men",
+      "id": "andamen:8449018265813",
+      "title": "Vulcan Shorts",
+      "store": "Andamen",
+      "image": "https://cdn.shopify.com/s/files/1/0618/3183/9957/files/01_85eca4ae-c00c-4c12-8a0e-11b408a4a5a6.jpg?v=1743150078&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "tailored shorts",
+        "region": "lower",
+        "shape": "regular",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "thigh",
+        "color": "navy blue",
+        "texture": "smooth cotton",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "leftWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftAnkle",
+        "rightAnkle",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1234,
+      "drawn": {
+        "front": 0.059,
+        "side": 0.049
+      }
+    },
+    {
+      "kind": "dress women",
+      "id": "qurvii:8006578241781",
+      "title": "Kimono dress",
+      "store": "Qurvii",
+      "image": "https://cdn.shopify.com/s/files/1/0605/5798/3989/files/15044.1_44a33604-995e-4dfb-a48f-bf0033578f66.jpg?v=1755176865&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "kimono dress",
+        "region": "full",
+        "shape": "oversized",
+        "sleeves": "short",
+        "collar": "v-neck",
+        "length": "thigh",
+        "color": "navy blue",
+        "texture": "smooth matte fabric",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftAnkle",
+        "rightAnkle",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1496,
+      "drawn": {
+        "front": 0.13,
+        "side": 0.109
+      }
+    },
+    {
+      "kind": "dress women",
+      "id": "wforwoman:15058910085487",
+      "title": "Painterly Casual Flared Dress",
+      "store": "W for Woman",
+      "image": "https://cdn.shopify.com/s/files/1/0776/0419/2550/files/W15076-129017_01.png?v=1787565003&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "flared dress",
+        "region": "full",
+        "shape": "flared",
+        "sleeves": "sleeveless",
+        "collar": "round neck",
+        "length": "calf",
+        "color": "charcoal black",
+        "texture": "smooth matte cotton",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "rightKnee",
+        "rightAnkle",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1708,
+      "drawn": {
+        "front": 0.195,
+        "side": 0.162
+      }
+    },
+    {
+      "kind": "kurta women",
+      "id": "wforwoman:14911024988527",
+      "title": "Light Blue Embroidered A-line Kurta",
+      "store": "W for Woman",
+      "image": "https://cdn.shopify.com/s/files/1/0776/0419/2550/files/W13798-225362_1.jpg?v=1773656595&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "A-line kurta",
+        "region": "upper",
+        "shape": "a-line",
+        "sleeves": "three-quarter",
+        "collar": "v-neck",
+        "length": "knee",
+        "color": "light blue",
+        "texture": "textured cotton with lace embroidery",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1740,
+      "drawn": {
+        "front": 0.183,
+        "side": 0.149
+      }
+    },
+    {
+      "kind": "kurta women",
+      "id": "tistabene:8453662900399",
+      "title": "Pink Stripes Sanganeri Short Kurta",
+      "store": "Tistabene",
+      "image": "https://cdn.shopify.com/s/files/1/0565/8050/5775/files/KRT-0614_de18d26e-f658-4fbc-b197-130caad15455.png?v=1767071505&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "short kurta",
+        "region": "upper",
+        "shape": "relaxed",
+        "sleeves": "three-quarter",
+        "collar": "mandarin collar",
+        "length": "thigh",
+        "color": "pink and white stripes",
+        "texture": "linen blend",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1859,
+      "drawn": {
+        "front": 0.148,
+        "side": 0.119
+      }
+    },
+    {
+      "kind": "top women",
+      "id": "bonkerscorner:15118393016684",
+      "title": "Cherry On Top Knit Top",
+      "store": "Bonkers Corner",
+      "image": "https://cdn.shopify.com/s/files/1/0653/0541/1684/files/CherryOnTopKnitTop_8.jpg?v=1778238182&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "knit top",
+        "region": "upper",
+        "shape": "fitted",
+        "sleeves": "short",
+        "collar": "crew neck",
+        "length": "waist",
+        "color": "white",
+        "texture": "ribbed knit",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1775,
+      "drawn": {
+        "front": 0.088,
+        "side": 0.074
+      }
+    },
+    {
+      "kind": "top women",
+      "id": "wforwoman:15078889455983",
+      "title": "Yellow Floral Printed Straight Top",
+      "store": "W for Woman",
+      "image": "https://cdn.shopify.com/s/files/1/0776/0419/2550/files/W31669-127844_1.jpg?v=1788846591&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "floral printed top",
+        "region": "upper",
+        "shape": "straight",
+        "sleeves": "three-quarter",
+        "collar": "mandarin collar",
+        "length": "thigh",
+        "color": "mustard yellow",
+        "texture": "smooth cotton",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1981,
+      "drawn": {
+        "front": 0.154,
+        "side": 0.124
+      }
+    },
+    {
+      "kind": "skirt women",
+      "id": "qurvii:7671055712501",
+      "title": "Qurvii Mustard Frill Cotton Skirt",
+      "store": "Qurvii",
+      "image": "https://cdn.shopify.com/s/files/1/0605/5798/3989/files/10610-4.webp?v=1789566413&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "frill cotton skirt",
+        "region": "lower",
+        "shape": "flared",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "ankle",
+        "color": "mustard yellow",
+        "texture": "printed cotton",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftAnkle",
+        "rightAnkle",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1811,
+      "drawn": {
+        "front": 0.14,
+        "side": 0.123
+      }
+    },
+    {
+      "kind": "skirt women",
+      "id": "wforwoman:14915543597423",
+      "title": "Elleven Women's Blue Straight Fit Knee Length Denim Skirt",
+      "store": "W for Woman",
+      "image": "https://cdn.shopify.com/s/files/1/0776/0419/2550/files/25CRE60356-704685L_1_164b78d7-a2d6-4e66-b71c-80909d4b976c.jpg?v=1774258944&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "denim skirt",
+        "region": "lower",
+        "shape": "straight",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "knee",
+        "color": "light blue",
+        "texture": "denim fabric",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Placed by its outline, as one flat piece: sleeves and legs don't move separately and it doesn't turn"
+      ],
+      "source": "flat",
+      "anchors": [
+        "leftHip",
+        "rightHip",
+        "hem"
+      ],
+      "ms": 1693,
+      "drawn": {
+        "front": 0.082,
+        "side": 0.063
+      }
+    },
+    {
+      "kind": "saree",
+      "id": "libas:8684334252182",
+      "title": "Libas Cream Floral Embellished Net Saree",
+      "store": "Libas",
+      "image": "https://cdn.shopify.com/s/files/1/0341/4805/7228/files/Libas-Cream-Floral-Embellished-Net-Saree-1100825P_4cf572a7-c60d-4572-9a60-95823b0cef48.jpg?v=1785735397&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "net saree",
+        "region": "full",
+        "shape": "relaxed",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "floor",
+        "color": "cream",
+        "texture": "sheer net with floral embroidery and sequins",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Loose draped fabric is drawn as a stiff piece: no drape or flow"
+      ],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 2110,
+      "drawn": {
+        "front": 0.209,
+        "side": 0.178
+      }
+    },
+    {
+      "kind": "saree",
+      "id": "kalyansilks:7922274762803",
+      "title": "Tissue Cream Saree with Vertical Stripes and Zari Pallu Kerala Saree",
+      "store": "Kalyan Silks",
+      "image": "https://cdn.shopify.com/s/files/1/0667/5421/5987/files/saree_2_555f405d-1751-4e7a-be7a-3f0bca621855.jpg?v=1787033519&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "tissue cream saree",
+        "region": "full",
+        "shape": "straight",
+        "sleeves": "short",
+        "collar": "none",
+        "length": "floor",
+        "color": "cream",
+        "texture": "tissue silk with metallic zari",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Loose draped fabric is drawn as a stiff piece: no drape or flow"
+      ],
+      "source": "model",
+      "anchors": [
+        "leftShoulder",
+        "rightShoulder",
+        "leftElbow",
+        "rightElbow",
+        "leftWrist",
+        "rightWrist",
+        "leftHip",
+        "rightHip",
+        "leftKnee",
+        "rightKnee",
+        "leftAnkle",
+        "rightAnkle",
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 1602,
+      "drawn": {
+        "front": 0.238,
+        "side": 0.198
+      }
+    },
+    {
+      "kind": "jeans women",
+      "id": "lovegen:10522916258097",
+      "title": "Women's Straight Jeans Grey",
+      "store": "LoveGen",
+      "image": "https://cdn.shopify.com/s/files/1/0837/4475/1921/files/DSC_1593copy.jpg?v=1782757182&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "straight jeans",
+        "region": "lower",
+        "shape": "straight",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "ankle",
+        "color": "grey",
+        "texture": "denim",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Placed by its outline, as one flat piece: sleeves and legs don't move separately and it doesn't turn"
+      ],
+      "source": "flat",
+      "anchors": [
+        "leftHip",
+        "rightHip",
+        "hem"
+      ],
+      "ms": 1576,
+      "drawn": {
+        "front": 0.14,
+        "side": 0.107
+      }
+    },
+    {
+      "kind": "jeans women",
+      "id": "wforwoman:14915542057327",
+      "title": "Elleven Women's Blue Pure Cotton Wide Leg High Rise Jeans",
+      "store": "W for Woman",
+      "image": "https://cdn.shopify.com/s/files/1/0776/0419/2550/files/25CRE60355-704943L_1.jpg?v=1774258831&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "wide-leg jeans",
+        "region": "lower",
+        "shape": "relaxed",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "ankle",
+        "color": "blue",
+        "texture": "denim",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Placed by its outline, as one flat piece: sleeves and legs don't move separately and it doesn't turn"
+      ],
+      "source": "flat",
+      "anchors": [
+        "leftHip",
+        "rightHip",
+        "hem"
+      ],
+      "ms": 1482,
+      "drawn": {
+        "front": 0.129,
+        "side": 0.099
+      }
+    },
+    {
+      "kind": "cap",
+      "id": "salty:9070767440087",
+      "title": "Raven Shade Cap",
+      "store": "Salty",
+      "image": "https://cdn.shopify.com/s/files/1/0644/2457/5191/files/HG-C-0020-GY_Main.jpg?v=1773340707&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "baseball cap",
+        "region": "head",
+        "shape": "regular",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "cropped",
+        "color": "charcoal black",
+        "texture": "woven fabric",
+        "view": "front"
+      },
+      "verdict": "partial",
+      "reasons": [
+        "Sits off the head: the photo isn't a plain, straight-on shot of the item"
+      ],
+      "source": "flat",
+      "anchors": [
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 261,
+      "drawn": {
+        "front": 0.027,
+        "side": 0.016
+      }
+    },
+    {
+      "kind": "cap",
+      "id": "urbanmonkey:9955070116121",
+      "title": "Foldable Camper Cap with Pocket // Olive",
+      "store": "Urban Monkey",
+      "image": "https://cdn.shopify.com/s/files/1/0661/7423/files/Foldable_Outdoor_Cap_Pocket_Olive_03.jpg?v=1762846231&width=360",
+      "garment": {
+        "version": 2,
+        "garment": "camp cap",
+        "region": "head",
+        "shape": "regular",
+        "sleeves": "none",
+        "collar": "none",
+        "length": "cropped",
+        "color": "olive green",
+        "texture": "smooth nylon",
+        "view": "front"
+      },
+      "verdict": "pass",
+      "reasons": [],
+      "source": "flat",
+      "anchors": [
+        "leftEye",
+        "rightEye"
+      ],
+      "ms": 285,
+      "drawn": {
+        "front": 0.017,
+        "side": 0.01
+      }
+    }
+  ]
+}

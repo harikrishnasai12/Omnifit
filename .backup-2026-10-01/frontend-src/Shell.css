@@ -1,0 +1,225 @@
+/* ==========================================================
+   App shell: Home · Explore · Stylist orb · Try-On · You
+   Desktop: left sidebar. Phone: top bar + bottom tab bar with the orb.
+   ========================================================== */
+
+.app-shell {
+  min-height: 100vh;
+}
+
+/* ---------- Desktop: sidebar ---------- */
+
+@media (min-width: 900px) {
+  .app-shell {
+    display: grid;
+    grid-template-columns: 232px minmax(0, 1fr);
+  }
+
+  .topbar {
+    display: none;
+  }
+
+  .app-nav {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 28px 16px;
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .sidebar-brand {
+    padding: 0 10px;
+  }
+
+  .app-nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .app-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 14px;
+    background: none;
+    color: var(--ink-soft);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .app-nav-item:hover {
+    background: var(--surface-muted);
+    color: var(--ink);
+  }
+
+  .app-nav-item.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .app-nav-icon {
+    width: 24px;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  /* The Stylist stands out even in the sidebar */
+  .app-nav-item.orb .app-nav-icon {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .sidebar-account {
+    margin-top: auto;
+    padding: 0 6px;
+  }
+
+  .sidebar-account .account-dropdown {
+    top: auto;
+    bottom: calc(100% + 8px);
+    left: 0;
+    right: auto;
+  }
+
+  .app-shell main {
+    width: min(1100px, calc(100% - 64px));
+  }
+}
+
+/* ---------- Phone and small tablets: top bar + bottom tab bar ---------- */
+
+@media (max-width: 899px) {
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 58px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .sidebar-brand,
+  .sidebar-account {
+    display: none;
+  }
+
+  .app-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .app-nav-items {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: end;
+  }
+
+  .app-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 2px;
+    border: none;
+    background: none;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .app-nav-item.active {
+    color: var(--accent);
+  }
+
+  .app-nav-icon {
+    font-size: 20px;
+  }
+
+  /* Centre: the Stylist orb, raised and always in thumb reach */
+  .app-nav-item.orb .app-nav-icon {
+    width: 56px;
+    height: 56px;
+    margin-top: -26px;
+    display: grid;
+    place-items: center;
+    border: 4px solid var(--bg);
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 22px;
+    box-shadow: var(--ai-glow);
+  }
+
+  .app-shell main {
+    width: calc(100% - 32px);
+    padding-bottom: 96px;
+  }
+
+  /* The chat composer sits just above the tab bar */
+  .app-shell .composer-wrap {
+    bottom: 68px;
+  }
+}
+
+/* The old pre-redesign bottom tabs are gone */
+.app-shell .main-tabs {
+  display: none;
+}
+
+/* ---------- Explore ---------- */
+
+.explore {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+.explore-search {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0 24px;
+  padding: 8px 8px 8px 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.explore-search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+}
+
+.explore-search input:focus {
+  outline: none;
+}

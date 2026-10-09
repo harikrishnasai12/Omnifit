@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@playwright/mcp@0.0.82",
+        "--config",
+        "playwright-mcp.config.json"
+      ]
+    }
+  }
+}

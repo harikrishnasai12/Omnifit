@@ -1,0 +1,14 @@
+{
+  "name": "omnifit-e2e",
+  "private": true,
+  "type": "module",
+  "description": "End-to-end test of the OmniFit app in a real browser (uses the installed Microsoft Edge).",
+  "scripts": {
+    "test": "node omnifit.e2e.mjs",
+    "personas": "node personas.mjs",
+    "tryon-audit": "node tryon_audit.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}

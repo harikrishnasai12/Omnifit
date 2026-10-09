@@ -1,0 +1,1103 @@
+<title>OmniFit Persona Journeys</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: three people as three lanes; pick one to replay their journey,
+   then compare all three side by side (feeds, taste, backend, scorecard).
+   Palette: OmniFit's own Midnight & Marigold. */
+:root {
+  --bg: #fbf9f6;
+  --surface: #ffffff;
+  --surface-2: #f4f1f8;
+  --line: #e6e1ee;
+  --ink: #16131f;
+  --ink-2: #463f58;
+  --muted: #766f86;
+  --violet: #5b3fd0;
+  --violet-soft: #efebfd;
+  --midnight: #221a3d;
+  --marigold: #f2a71b;
+  --marigold-soft: #fff4dc;
+  --marigold-ink: #8a5a00;
+  --rose: #e8456b;
+  --ai: linear-gradient(135deg, #2a1f4f 0%, #6b4fd8 100%);
+
+  --k-gemma: #6b4fd8;
+  --k-catalog: #e0971a;
+  --k-intent: #1f9d6a;
+  --k-context: #2f86d6;
+  --k-memory: #e8456b;
+  --k-voice: #16a3a3;
+  --k-stream: #a39cb5;
+
+  --p-arjun: #e0971a;
+  --p-priya: #6b4fd8;
+  --p-meena: #e8456b;
+
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --body: "Inter", -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f0c18; --surface: #1b1628; --surface-2: #231d33; --line: #2e2742;
+    --ink: #f3f0fa; --ink-2: #cbc4dc; --muted: #9a92ae;
+    --violet: #a996ff; --violet-soft: #2a2247; --midnight: #6b4fd8;
+    --marigold: #f5b73d; --marigold-soft: #3a2c12; --marigold-ink: #f5c96a; --rose: #ff6b8b;
+    --ai: linear-gradient(135deg, #4a37a0 0%, #8a70f0 100%);
+    --k-stream: #6f6885;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f0c18; --surface: #1b1628; --surface-2: #231d33; --line: #2e2742;
+  --ink: #f3f0fa; --ink-2: #cbc4dc; --muted: #9a92ae;
+  --violet: #a996ff; --violet-soft: #2a2247; --midnight: #6b4fd8;
+  --marigold: #f5b73d; --marigold-soft: #3a2c12; --marigold-ink: #f5c96a; --rose: #ff6b8b;
+  --ai: linear-gradient(135deg, #4a37a0 0%, #8a70f0 100%);
+  --k-stream: #6f6885;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding-inline: 20px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 40px 80px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 72px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(34px, 5.4vw, 60px); line-height: 1.04; }
+h2 { font-size: clamp(26px, 3.4vw, 36px); line-height: 1.1; }
+h3 { font-size: 19px; }
+p { margin: 0; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet); }
+.lede { max-width: 64ch; color: var(--ink-2); font-size: 17px; }
+.section-head { display: grid; gap: 8px; margin-bottom: 24px; }
+.section-head p { max-width: 70ch; color: var(--muted); }
+.num { font-variant-numeric: tabular-nums; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; border-radius: 6px; }
+
+/* ---------- Hero ---------- */
+.hero { display: grid; gap: 22px; }
+.hero h1 em { font-style: italic; background: var(--ai); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 13px; }
+.facts b { color: var(--ink); font-weight: 600; }
+
+.people { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.person {
+  display: grid; gap: 12px; padding: 18px; text-align: left;
+  border: 1px solid var(--line); border-radius: 18px; background: var(--surface);
+  transition: border-color .2s, box-shadow .2s, transform .15s;
+}
+.person:hover { transform: translateY(-2px); }
+.person[aria-pressed="true"] { border-color: var(--p); box-shadow: 0 0 0 1px var(--p), 0 16px 40px -20px var(--p); }
+.person-top { display: flex; gap: 12px; align-items: center; }
+.avatar {
+  width: 46px; height: 46px; flex-shrink: 0; display: grid; place-items: center;
+  border-radius: 50%; background: var(--p); color: #fff; font-family: var(--display); font-size: 21px; font-weight: 600;
+}
+.person h3 { font-size: 21px; }
+.person .who { color: var(--muted); font-size: 13px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { padding: 3px 10px; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); font-size: 12px; max-width: 100%; }
+.chip.when { background: var(--marigold-soft); color: var(--marigold-ink); font-weight: 600; }
+.person .trend { color: var(--ink-2); font-size: 14px; }
+.p-arjun { --p: var(--p-arjun); }
+.p-priya { --p: var(--p-priya); }
+.p-meena { --p: var(--p-meena); }
+
+/* ---------- Journey ---------- */
+.journey { display: grid; gap: 0; }
+.journey-head { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.seg { display: inline-flex; padding: 4px; border-radius: 999px; background: var(--surface-2); gap: 2px; }
+.seg button { padding: 7px 14px; border: none; border-radius: 999px; background: none; font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; background: var(--k); display: inline-block; }
+
+.step {
+  display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 16px;
+  position: relative; padding-bottom: 22px;
+}
+.step::before { content: ""; position: absolute; left: 16px; top: 34px; bottom: 0; width: 2px; background: var(--line); }
+.step:last-child::before { display: none; }
+.dot {
+  width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--p); color: var(--ink); font-size: 13px; font-weight: 700;
+}
+.step-body {
+  display: grid; grid-template-columns: minmax(0, 1fr) 170px; gap: 18px;
+  padding: 16px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+}
+.step-body.no-shot { grid-template-columns: minmax(0, 1fr); }
+.step-title { display: flex; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+.step-title h3 { font-size: 18px; }
+.step-title .meta { color: var(--muted); font-size: 12.5px; }
+.what { display: grid; gap: 10px; margin-top: 10px; min-width: 0; }
+.said { padding: 10px 14px; border-radius: 16px 16px 4px 16px; background: var(--midnight); color: #fff; justify-self: start; max-width: 60ch; }
+.understood { display: flex; flex-wrap: wrap; gap: 6px; }
+.understood span { padding: 3px 10px; border-radius: 999px; background: var(--violet-soft); color: var(--violet); font-size: 12.5px; font-weight: 600; }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; font-size: 13.5px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; color: var(--ink-2); min-width: 0; }
+.shot { width: 170px; border-radius: 18px; border: 1px solid var(--line); overflow: hidden; align-self: start; background: var(--surface-2); }
+.shot img { display: block; width: 100%; height: auto; }
+
+.mini { display: grid; gap: 6px; margin-top: 12px; }
+.mini-bar { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: var(--surface-2); }
+.mini-bar i { display: block; height: 100%; background: var(--k); }
+.mini-caption { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); }
+.replay-btn {
+  justify-self: start; margin-top: 4px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); font-size: 12.5px; font-weight: 600; color: var(--violet);
+}
+.replay { display: grid; gap: 14px; margin-top: 10px; padding: 14px; border-radius: 12px; background: var(--surface-2); }
+.req h4 { margin: 0 0 8px; font-family: var(--mono); font-size: 12.5px; font-weight: 500; display: flex; gap: 10px; flex-wrap: wrap; }
+.req h4 span { color: var(--muted); }
+.gantt { display: grid; gap: 5px; }
+.g-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 10px; align-items: center; font-size: 12.5px; }
+.g-label { min-width: 0; }
+.g-label b { font-weight: 600; }
+.g-label small { display: block; color: var(--muted); font-size: 11.5px; line-height: 1.35; overflow-wrap: anywhere; }
+.g-track { position: relative; height: 12px; border-radius: 4px; background: color-mix(in srgb, var(--line) 60%, transparent); }
+.g-track i {
+  position: absolute; top: 0; bottom: 0; border-radius: 4px; background: var(--k); min-width: 3px;
+  transform-origin: left; animation: grow .5s ease-out both;
+}
+.g-track i.tick { width: 3px !important; min-width: 0; background: var(--k); }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .g-track i { animation: none; } .person:hover { transform: none; } }
+
+.k-gemma { --k: var(--k-gemma); } .k-catalog { --k: var(--k-catalog); } .k-intent { --k: var(--k-intent); }
+.k-context { --k: var(--k-context); } .k-memory { --k: var(--k-memory); } .k-voice { --k: var(--k-voice); }
+.k-stream { --k: var(--k-stream); }
+
+/* ---------- Feeds ---------- */
+.lanes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.lane { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.lane-head { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 2px solid var(--p); }
+.lane-head .avatar { width: 32px; height: 32px; font-size: 15px; }
+.lane-head b { font-size: 15px; }
+.lane-head span { color: var(--muted); font-size: 12.5px; }
+.card { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; padding: 10px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.card.plain { grid-template-columns: minmax(0, 1fr); }
+.thumb { width: 64px; height: 80px; border-radius: 10px; object-fit: cover; background: var(--surface-2); }
+.card b { display: block; font-size: 14px; line-height: 1.3; }
+.card .price { color: var(--muted); font-size: 12.5px; }
+.why { display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 6px; background: var(--violet-soft); color: var(--violet); font-size: 12px; font-weight: 600; line-height: 1.4; }
+.type { display: inline-block; margin-bottom: 4px; padding: 1px 7px; border-radius: 5px; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--marigold-soft); color: var(--marigold-ink); }
+
+/* ---------- Taste ---------- */
+.taste-lane { display: grid; gap: 14px; align-content: start; padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); min-width: 0; }
+.summary { font-family: var(--display); font-size: 17px; line-height: 1.35; font-style: italic; color: var(--ink); }
+.dim { display: grid; gap: 6px; }
+.dim-name { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.bar-row { display: grid; grid-template-columns: 96px minmax(0, 1fr) 38px; gap: 8px; align-items: center; font-size: 13px; }
+.bar-row span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar { height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 4px; background: var(--p); }
+.bar-row .num { color: var(--muted); font-size: 12px; text-align: right; }
+.struck { text-decoration: line-through; color: var(--muted); }
+.note { font-size: 13px; color: var(--muted); }
+.event { padding: 10px 12px; border-radius: 12px; background: var(--marigold-soft); color: var(--marigold-ink); font-size: 13.5px; font-weight: 600; }
+
+/* ---------- Architecture ---------- */
+.arch { display: grid; grid-template-columns: 1fr auto 1.5fr auto 1fr; gap: 14px; align-items: center; }
+.arch-col { display: grid; gap: 10px; }
+.node { padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); display: grid; gap: 6px; border-left: 4px solid var(--k, var(--line)); }
+.node b { font-size: 14.5px; }
+.node small { color: var(--muted); font-size: 12px; line-height: 1.4; }
+.node .hits { display: flex; flex-wrap: wrap; gap: 4px; }
+.node .hits span { padding: 1px 7px; border-radius: 5px; font-size: 11.5px; font-weight: 600; background: color-mix(in srgb, var(--p) 15%, transparent); color: var(--ink-2); }
+.node.edge { background: var(--midnight); color: #fff; border-color: transparent; }
+.node.edge small { color: rgba(255,255,255,.7); }
+.arrow { color: var(--muted); font-size: 22px; text-align: center; }
+
+/* ---------- Scorecard ---------- */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: none; }
+th { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+td.num { font-variant-numeric: tabular-nums; }
+th.pc { color: var(--p); }
+
+.privacy { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.privacy div { padding: 16px; border-radius: 14px; background: var(--surface-2); font-size: 14px; color: var(--ink-2); }
+.privacy b { display: block; margin-bottom: 4px; color: var(--ink); }
+
+.loading { color: var(--muted); }
+
+/* ---------- Player (a deliberately dark stage in both themes) ---------- */
+:root {
+  --stage-bg: #140f24;
+  --stage-panel: #1f1836;
+  --stage-line: #342a55;
+  --stage-ink: #f3f0fa;
+  --stage-muted: #a79fbf;
+  --stage-violet: #8a70f0;
+  --stage-marigold: #f5b73d;
+}
+.player-controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.player-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.player-buttons button {
+  padding: 9px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+  font-size: 14px; font-weight: 600;
+}
+.player-buttons .play { background: var(--ai); color: #fff; border-color: transparent; min-width: 110px; }
+.stage-wrap { position: relative; width: 100%; overflow: hidden; border-radius: 20px; background: var(--stage-bg); box-shadow: 0 30px 80px -30px rgba(20, 15, 36, 0.6); }
+.stage {
+  position: absolute; left: 0; top: 0; width: 1280px; height: 720px; transform-origin: 0 0;
+  background: radial-gradient(900px 500px at 0% 0%, #2d2163 0%, transparent 60%),
+              radial-gradient(700px 420px at 100% 100%, rgba(245, 183, 61, 0.14) 0%, transparent 60%), var(--stage-bg);
+  color: var(--stage-ink); font-family: var(--body); overflow: hidden;
+}
+.st-top { position: absolute; left: 40px; right: 40px; top: 26px; display: flex; justify-content: space-between; align-items: center; }
+.st-who { display: flex; gap: 12px; align-items: center; }
+.st-who b { display: block; font-family: var(--display); font-size: 24px; }
+.st-who span:not(.st-avatar) { color: var(--stage-muted); font-size: 14px; }
+.st-avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--p, var(--stage-violet)); font-family: var(--display); font-size: 21px; font-weight: 600; color: #fff; }
+.st-scene { text-align: right; }
+.st-scene span { display: block; color: var(--stage-marigold); font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.st-scene b { font-family: var(--display); font-size: 26px; font-weight: 600; }
+
+.st-phone { position: absolute; left: 60px; top: 96px; width: 286px; height: 520px; padding: 10px; border-radius: 40px; background: #0b0814; box-shadow: 0 0 0 2px #3a3060, 0 30px 60px rgba(0,0,0,.5); }
+.st-notch { position: absolute; left: 50%; top: 14px; width: 80px; height: 18px; margin-left: -40px; border-radius: 10px; background: #0b0814; z-index: 2; }
+.st-screen { position: relative; width: 100%; height: 100%; border-radius: 30px; overflow: hidden; background: #fbf9f6; color: #16131f; font-size: 13px; }
+.st-screen > .shot-img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; animation: rise .5s ease-out both; }
+
+.st-right { position: absolute; left: 400px; right: 40px; top: 96px; height: 470px; display: flex; flex-direction: column; gap: 14px; }
+.st-label { color: var(--stage-muted); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.st-flow { display: flex; align-items: center; gap: 12px; }
+.st-edge { flex: 1; padding: 10px 14px; border-radius: 14px; background: #2a2150; }
+.st-edge b { display: block; font-size: 15px; }
+.st-edge small { color: var(--stage-muted); font-size: 12px; }
+.st-arrow { color: var(--stage-muted); font-size: 22px; }
+.st-nodes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.st-node {
+  position: relative; padding: 12px 14px; min-height: 76px; border-radius: 14px; border: 1px solid var(--stage-line);
+  background: var(--stage-panel); opacity: .45; transition: opacity .35s, box-shadow .35s, border-color .35s, transform .35s;
+}
+.st-node b { display: block; font-size: 14.5px; }
+.st-node small { display: block; color: var(--stage-muted); font-size: 11.5px; line-height: 1.35; margin-top: 2px; }
+.st-node em { position: absolute; right: 10px; top: 10px; padding: 2px 8px; border-radius: 999px; background: var(--k); color: #fff; font-size: 12px; font-style: normal; font-weight: 700; opacity: 0; transition: opacity .3s; }
+.st-node.on { opacity: 1; border-color: var(--k); box-shadow: 0 0 0 1px var(--k), 0 0 28px -4px var(--k); transform: translateY(-2px); }
+.st-node.on em { opacity: 1; }
+.st-log { flex: 1; margin: 0; padding: 12px 14px; list-style: none; border-radius: 14px; background: rgba(0,0,0,.25); font-family: var(--mono); font-size: 12.5px; overflow: hidden; display: flex; flex-direction: column; gap: 5px; }
+.st-log li { display: flex; gap: 10px; animation: rise .35s ease-out both; }
+.st-log li i { width: 8px; height: 8px; margin-top: 5px; border-radius: 2px; background: var(--k); flex-shrink: 0; }
+.st-log li span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.st-log li b { color: var(--stage-muted); font-weight: 500; }
+.st-caption {
+  position: absolute; left: 400px; right: 40px; bottom: 34px; min-height: 64px; padding: 12px 18px; border-radius: 14px;
+  background: rgba(10, 7, 20, .72); border: 1px solid var(--stage-line); font-size: 18px; line-height: 1.4; color: var(--stage-ink);
+}
+.st-progress { position: absolute; left: 40px; right: 40px; bottom: 12px; display: flex; gap: 4px; }
+.st-progress i { flex: 1; height: 4px; border-radius: 2px; background: #342a55; overflow: hidden; }
+.st-progress i.done { background: var(--stage-marigold); }
+.st-progress i.now b { display: block; height: 100%; background: var(--stage-marigold); animation: fill linear both; }
+@keyframes fill { from { width: 0; } to { width: 100%; } }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
+
+/* Phone content */
+.ph { position: absolute; inset: 0; padding: 38px 14px 14px; display: flex; flex-direction: column; gap: 10px; background: linear-gradient(180deg, #f3eeff 0%, #fbf9f6 50%, #fff6e6 100%); }
+.ph-head { font-family: var(--display); font-size: 17px; font-weight: 600; }
+.ph-bubble { align-self: flex-end; max-width: 88%; padding: 9px 12px; border-radius: 16px 16px 4px 16px; background: #221a3d; color: #fff; font-size: 13px; line-height: 1.4; animation: rise .4s ease-out both; }
+.ph-bot { align-self: flex-start; max-width: 92%; padding: 9px 12px; border-radius: 16px 16px 16px 4px; background: #fff; border: 1px solid #e6e1ee; font-size: 13px; animation: rise .4s ease-out both; }
+.ph-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.ph-chips span { padding: 3px 9px; border-radius: 999px; background: #efebfd; color: #5b3fd0; font-size: 11.5px; font-weight: 700; animation: pop .45s ease-out both; }
+.ph-options { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.ph-options span { padding: 4px 10px; border-radius: 999px; border: 1px solid #5b3fd0; color: #5b3fd0; font-size: 11.5px; font-weight: 600; transition: background .3s, color .3s; }
+.ph-options span.tap { background: #5b3fd0; color: #fff; }
+.ph-composer { margin-top: auto; padding: 10px 12px; border-radius: 16px; background: #fff; border: 1px solid #d5cfe0; min-height: 60px; font-size: 13px; line-height: 1.4; box-shadow: 0 8px 20px -10px rgba(34,26,61,.3); }
+.ph-composer .caret { display: inline-block; width: 2px; height: 15px; background: #5b3fd0; vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.ph-card { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 9px; padding: 7px; border-radius: 12px; background: #fff; border: 1px solid #e6e1ee; animation: rise .45s ease-out both; }
+.ph-card.plain { grid-template-columns: minmax(0, 1fr); background: #fff4dc; border-color: transparent; }
+.ph-card img { width: 54px; height: 66px; border-radius: 8px; object-fit: cover; }
+.ph-card b { display: block; font-size: 12.5px; line-height: 1.25; }
+.ph-card small { display: block; color: #766f86; font-size: 11px; }
+.ph-why { display: inline-block; margin-top: 3px; padding: 1px 6px; border-radius: 5px; background: #efebfd; color: #5b3fd0; font-size: 10.5px; font-weight: 700; line-height: 1.35; }
+.ph-type { font-size: 9.5px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #8a5a00; }
+.ph-sig { display: flex; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 12px; background: #fff; border: 1px solid #e6e1ee; font-size: 12.5px; animation: rise .45s ease-out both; }
+.ph-sig i { font-style: normal; font-size: 16px; animation: pop .5s ease-out both; }
+.ph-store { margin-top: auto; padding: 12px; border-radius: 14px; background: #221a3d; color: #fff; font-size: 13px; animation: rise .5s ease-out both; }
+.ph-store b { font-size: 26px; font-family: var(--display); display: block; }
+.ph-bar { display: grid; grid-template-columns: 78px minmax(0, 1fr) 34px; gap: 6px; align-items: center; font-size: 11.5px; }
+.ph-bar span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ph-bar u { display: block; height: 7px; border-radius: 4px; background: #e6e1ee; overflow: hidden; }
+.ph-bar u i { display: block; height: 100%; background: #5b3fd0; border-radius: 4px; transform-origin: left; animation: grow .8s ease-out both; }
+.ph-intro { align-items: center; justify-content: center; text-align: center; gap: 12px; }
+.ph-intro .big { width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center; background: var(--p); color: #fff; font-family: var(--display); font-size: 44px; animation: pop .6s ease-out both; }
+.ph-intro h4 { margin: 0; font-family: var(--display); font-size: 26px; }
+.ph-chip { padding: 4px 10px; border-radius: 999px; background: #fff4dc; color: #8a5a00; font-size: 12px; font-weight: 700; }
+.ph-num { font-family: var(--display); font-size: 40px; font-weight: 600; color: #5b3fd0; line-height: 1; }
+.ph-strike { text-decoration: line-through; opacity: .5; transition: opacity .4s; }
+.ph-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.ph-gallery span { aspect-ratio: 3 / 4; border-radius: 6px; background: #e6e1ee; }
+.ph-pick { position: relative; margin: 0; aspect-ratio: 3 / 4; border-radius: 6px; overflow: hidden; box-shadow: 0 0 0 3px #5b3fd0; animation: pop .5s .6s both; }
+.ph-pick img { width: 100%; height: 100%; object-fit: cover; }
+.ph-pick i { position: absolute; right: 4px; top: 4px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; background: #5b3fd0; color: #fff; font-size: 12px; font-style: normal; animation: pop .4s 1.4s both; }
+.ph-flash { position: absolute; inset: 0; background: #fff; animation: flash .6s ease-out both; }
+@keyframes flash { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 0; } }
+.ph-attached { display: flex; align-items: center; gap: 8px; align-self: flex-start; margin-top: auto; padding: 5px 10px 5px 5px; border-radius: 12px; background: #efebfd; color: #5b3fd0; font-size: 12px; font-weight: 700; animation: rise .4s both; }
+.ph-attached img { width: 34px; height: 42px; border-radius: 6px; object-fit: cover; }
+.ph-attached + .ph-composer { margin-top: 0; }
+.ph-bubble-img { display: block; width: 110px; height: 136px; object-fit: cover; border-radius: 10px; margin-bottom: 6px; }
+
+body.record { padding: 0; overflow: hidden; background: var(--stage-bg); }
+body.record .wrap > *:not(#watch) { display: none; }
+body.record .wrap { padding: 0; max-width: none; }
+body.record #watch > .section-head, body.record #player-controls { display: none; }
+body.record .stage-wrap { border-radius: 0; box-shadow: none; }
+
+.findings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.finding-col { padding: 20px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); min-width: 0; }
+.finding-col h3 { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.finding-col h3::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--k-intent); }
+.finding-col.fix h3::before { background: var(--marigold); }
+.finding-col ul { margin: 0; padding-left: 18px; display: grid; gap: 10px; color: var(--ink-2); font-size: 14px; }
+.finding-col b { color: var(--ink); }
+@media (max-width: 900px) { .findings { grid-template-columns: minmax(0, 1fr); } }
+
+@media (max-width: 900px) {
+  .people, .lanes, .privacy { grid-template-columns: minmax(0, 1fr); }
+  .arch { grid-template-columns: minmax(0, 1fr); }
+  .arrow { transform: rotate(90deg); }
+  .step-body { grid-template-columns: minmax(0, 1fr); }
+  .shot { width: min(220px, 100%); }
+  .g-row { grid-template-columns: minmax(0, 1fr); gap: 3px; }
+}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">OmniFit Live · recorded run</p>
+    <h1>Three shoppers, three moments, <em>one stylist</em></h1>
+    <p class="lede" id="lede">Three people used the real app at different times of the year. Every screen, every AI call and every
+      decision the backend made was recorded. Pick a person to replay their journey, then compare what the app did for each.</p>
+    <div class="facts" id="facts"></div>
+    <div class="people" id="people" role="group" aria-label="Choose a person"></div>
+  </header>
+
+  <section aria-labelledby="watch-title" id="watch">
+    <div class="section-head">
+      <p class="eyebrow">Watch</p>
+      <h2 id="watch-title">Each session, played back and narrated</h2>
+      <p>Press play. On the left, what the person saw and typed. On the right, what the backend did, with real timings. Captions at the bottom; turn on the voice to hear it.</p>
+    </div>
+    <div class="player-controls" id="player-controls">
+      <div class="seg" id="watch-people" role="group" aria-label="Whose session"></div>
+      <div class="player-buttons">
+        <button type="button" id="btn-prev" aria-label="Previous scene">⏮</button>
+        <button type="button" id="btn-play" class="play">▶ Play</button>
+        <button type="button" id="btn-next" aria-label="Next scene">⏭</button>
+        <button type="button" id="btn-voice" aria-pressed="true">🔊 Voice on</button>
+      </div>
+    </div>
+    <div class="stage-wrap" id="stage-wrap">
+      <div class="stage" id="stage">
+        <div class="st-top">
+          <div class="st-who"><span class="st-avatar" id="st-avatar">A</span><div><b id="st-name">Arjun</b><span id="st-meta"></span></div></div>
+          <div class="st-scene"><span id="st-count">1 / 12</span><b id="st-title">Meet Arjun</b></div>
+        </div>
+        <div class="st-phone"><div class="st-notch"></div><div class="st-screen" id="st-screen"></div></div>
+        <div class="st-right">
+          <p class="st-label">Behind the screen</p>
+          <div class="st-flow">
+            <div class="st-edge"><b>📱 Phone app</b><small>React PWA</small></div>
+            <span class="st-arrow">→</span>
+            <div class="st-edge"><b>⚙ OmniFit server</b><small>FastAPI, streams answers</small></div>
+          </div>
+          <div class="st-nodes" id="st-nodes"></div>
+          <ol class="st-log" id="st-log"></ol>
+        </div>
+        <p class="st-caption" id="st-caption"></p>
+        <div class="st-progress" id="st-progress"></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="journey-title">
+    <div class="journey-head">
+      <div class="section-head" style="margin:0">
+        <p class="eyebrow">Journey</p>
+        <h2 id="journey-title">What they did, and what happened behind the screen</h2>
+      </div>
+      <div class="seg" id="seg" role="group" aria-label="Person"></div>
+    </div>
+    <div class="legend" id="legend" style="margin-bottom:18px"></div>
+    <div class="journey" id="journey"><p class="loading">Loading the recording…</p></div>
+  </section>
+
+  <section aria-labelledby="feeds-title">
+    <div class="section-head">
+      <p class="eyebrow">Same app, three feeds</p>
+      <h2 id="feeds-title">After a few taps, each person's Home feed is their own</h2>
+      <p>The first page each person saw when they came back. Every personalised card says why it is there.</p>
+    </div>
+    <div class="lanes" id="feeds"></div>
+  </section>
+
+  <section aria-labelledby="taste-title">
+    <div class="section-head">
+      <p class="eyebrow">What OmniFit learned</p>
+      <h2 id="taste-title">Taste from what they did, intent from what they said</h2>
+      <p>Bars show confidence (more evidence, longer bar). Only shopping taste is learned: no personality typing, and nothing from faces or bodies.</p>
+    </div>
+    <div class="lanes" id="taste"></div>
+  </section>
+
+  <section aria-labelledby="arch-title">
+    <div class="section-head">
+      <p class="eyebrow">Under the hood</p>
+      <h2 id="arch-title">Where each request went</h2>
+      <p>Counts are calls made for each person during the recording, coloured by person.</p>
+    </div>
+    <div class="arch" id="arch"></div>
+  </section>
+
+  <section aria-labelledby="score-title">
+    <div class="section-head">
+      <p class="eyebrow">Scorecard</p>
+      <h2 id="score-title">The three sessions in numbers</h2>
+    </div>
+    <div class="table-wrap"><table id="score"></table></div>
+  </section>
+
+  <section aria-labelledby="findings-title">
+    <div class="section-head">
+      <p class="eyebrow">Findings</p>
+      <h2 id="findings-title">What the recording showed</h2>
+      <p>Read straight from the three runs above.</p>
+    </div>
+    <div class="findings">
+      <div class="finding-col good">
+        <h3>Worked well</h3>
+        <ul>
+          <li><b>One sentence became a plan.</b> Priya said “my sister's wedding is on 14 December”. The app saved the event, opened her feed with a 61-day countdown and three looks tagged “For your Sister's wedding on 14 Dec”, and put the wedding first in her stories.</li>
+          <li><b>Mixed languages understood.</b> Meena wrote in Hinglish. The app picked out Diwali, traditional, under ₹4,000 and her age (from her own words), then asked one question before styling.</li>
+          <li><b>Corrections win.</b> After Meena's “Not me: white”, the look shown “Because you loved 4 white looks” left her feed.</li>
+          <li><b>Guests keep their data.</b> Arjun's love as a guest stored nothing on the server. His phone re-ranked the feed on its own.</li>
+          <li><b>Scrolling needs no AI.</b> Feed pages came back in 50–450 ms, because the looks are built ahead of time. Gemma runs only when someone asks something.</li>
+        </ul>
+      </div>
+      <div class="finding-col fix">
+        <h3>Needs fixing</h3>
+        <ul>
+          <li><b>Arjun's chat didn't reach his feed.</b> He asked for college wear under ₹1,500 as a guest, but the feed didn't use it. A guest's intent should stay on the phone and go with each feed request, and move to the account at sign-up.</li>
+          <li><b>Festivals crowd out personal taste.</b> Five of Arjun's seven first cards said “Ready for Navratri”. Festival looks should be capped per page.</li>
+          <li><b>“Loved 4” overcounts.</b> Priya loved 3 blue looks, but saves and long looks also counted. The wording should become “Like the blue looks you loved”.</li>
+          <li><b>Too few wedding looks.</b> Priya's second visit had no wedding looks left: the pool has only 3 women's wedding looks. The builder should run longer overnight.</li>
+          <li><b>Slow answers while the GPU is shared.</b> Chat answers took 62–78 s during the run (with a free GPU it's usually under 30 s). The feed isn't affected.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="privacy-title">
+    <div class="section-head">
+      <p class="eyebrow">How it was recorded</p>
+      <h2 id="privacy-title">Real app, real model, throwaway accounts</h2>
+    </div>
+    <div class="privacy" id="privacy"></div>
+  </section>
+</div>
+
+<script type="application/json" id="images">__IMAGES__</script>
+<script type="application/json" id="story">__STORY__</script>
+<script type="application/json" id="recording">__RECORDING__</script>
+<script>
+const IMAGES = JSON.parse(document.getElementById("images").textContent);
+const img = (ref) => (ref && ref.startsWith("@") ? IMAGES[ref.slice(1)] : ref);
+const KINDS = {
+  gemma: "Gemma (AI model)", catalog: "Catalogue", intent: "Intent Engine", context: "Context (weather, trends)",
+  memory: "Vector memory", voice: "Voice", stream: "Streamed to the page",
+};
+const el = (tag, attrs = {}, ...children) => {
+  const node = document.createElement(tag);
+  for (const [key, value] of Object.entries(attrs)) {
+    if (value === undefined || value === null || value === false) continue;
+    if (key === "class") node.className = value;
+    else if (key === "style") node.style.cssText = value;
+    else if (key.startsWith("on")) node.addEventListener(key.slice(2), value);
+    else node.setAttribute(key, value === true ? "" : value);
+  }
+  for (const child of children.flat()) {
+    if (child === null || child === undefined || child === false) continue;
+    node.append(child instanceof Node ? child : document.createTextNode(String(child)));
+  }
+  return node;
+};
+const secs = (ms) => (ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${Math.round(ms)} ms`);
+const fmtDate = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+const rupees = (n) => (n ? `₹${Math.round(n).toLocaleString("en-IN")}` : "");
+const text = (value) => {
+  if (value === null || value === undefined || value === "") return "";
+  if (Array.isArray(value)) return value.map(text).filter(Boolean).join(" · ");
+  if (typeof value === "object") return Object.entries(value).map(([k, v]) => (text(v) ? `${k}: ${text(v)}` : "")).filter(Boolean).join("; ");
+  return String(value);
+};
+
+let run, selected = 0;
+
+function allTraces(persona) { return persona.steps.flatMap((step) => step.traces || []); }
+function allSteps(persona) { return allTraces(persona).flatMap((trace) => trace.steps); }
+function stepOf(persona, title) { return persona.steps.find((step) => step.title.startsWith(title)); }
+
+function weatherOf(persona) {
+  const found = allSteps(persona).find((step) => step.label.startsWith("Weather") && step.data && step.data.feel);
+  return found ? `${found.data.high}°C, ${found.data.feel}${found.data.rain ? ", rain" : ""}` : null;
+}
+
+function renderHero() {
+  const total = run.personas.reduce((sum, p) => sum + allTraces(p).length, 0);
+  const gemma = run.personas.reduce((sum, p) => sum + allSteps(p).filter((s) => s.kind === "gemma").length, 0);
+  const facts = document.getElementById("facts");
+  facts.append(
+    el("span", {}, "Recorded ", el("b", {}, new Date(run.recorded_at).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }))),
+    el("span", {}, el("b", { class: "num" }, total), " backend requests"),
+    el("span", {}, el("b", { class: "num" }, gemma), " Gemma calls"),
+    el("span", {}, "Model ", el("b", {}, "gemma4:12b"), " on a shared GPU"),
+  );
+  const people = document.getElementById("people");
+  run.personas.forEach((p, index) => {
+    const weather = weatherOf(p);
+    people.append(el("button", {
+      class: `person p-${p.id}`, "aria-pressed": String(index === selected), type: "button",
+      onclick: () => select(index),
+    },
+      el("div", { class: "person-top" },
+        el("span", { class: "avatar", "aria-hidden": "true" }, p.name[0]),
+        el("div", {}, el("h3", {}, p.name), el("p", { class: "who" }, `${p.age} · ${p.city} · shops ${p.section}'s`))),
+      el("p", { class: "trend" }, p.trend),
+      el("div", { class: "chips" },
+        el("span", { class: "chip when" }, fmtDate(p.date)),
+        el("span", { class: "chip" }, p.when),
+        weather && el("span", { class: "chip" }, `🌡 ${weather}`),
+        p.startsAsGuest && el("span", { class: "chip" }, "Starts as a guest"))));
+  });
+}
+
+function select(index) {
+  selected = index;
+  document.querySelectorAll(".person").forEach((node, i) => node.setAttribute("aria-pressed", String(i === index)));
+  document.querySelectorAll("#seg button").forEach((node, i) => node.setAttribute("aria-pressed", String(i === index)));
+  renderJourney();
+}
+
+function miniBar(traces) {
+  const byKind = {};
+  traces.flatMap((t) => t.steps).forEach((s) => { if (s.ms) byKind[s.kind] = (byKind[s.kind] || 0) + s.ms; });
+  const total = Object.values(byKind).reduce((a, b) => a + b, 0);
+  if (!total) return null;
+  const order = Object.keys(KINDS).filter((k) => byKind[k]);
+  return el("div", { class: "mini" },
+    el("div", { class: "mini-bar", role: "img", "aria-label": "Time spent by part of the backend" },
+      order.map((k) => el("i", { class: `k-${k}`, style: `width:${(byKind[k] / total) * 100}%` }))),
+    el("div", { class: "mini-caption" },
+      el("span", {}, `${traces.length} request${traces.length === 1 ? "" : "s"}`),
+      order.map((k) => el("span", {}, `${KINDS[k]} ${secs(byKind[k])}`))));
+}
+
+function replay(traces) {
+  const box = el("div", { class: "replay" });
+  traces.forEach((trace) => {
+    const total = Math.max(trace.ms || 1, 1);
+    const shown = trace.steps.filter((s) => s.kind !== "stream" || s.label.includes("understood") || s.label.includes("question") || s.label.includes("done"));
+    let delay = 0;
+    box.append(el("div", { class: "req" },
+      el("h4", {}, `${trace.method} ${trace.path}`, el("span", {}, `${trace.status} · ${secs(trace.ms || 0)}`)),
+      el("div", { class: "gantt" }, shown.length ? shown.map((s) => {
+        const bar = s.ms
+          ? el("i", { style: `left:${(s.at_ms / total) * 100}%;width:${(s.ms / total) * 100}%;animation-delay:${(delay += 0.12)}s` })
+          : el("i", { class: "tick", style: `left:calc(${(s.at_ms / total) * 100}% - 1px);animation-delay:${(delay += 0.06)}s` });
+        return el("div", { class: `g-row k-${s.kind}` },
+          el("div", { class: "g-label" }, el("b", {}, s.label), s.ms ? ` · ${secs(s.ms)}` : "", text(s.data) && el("small", {}, text(s.data))),
+          el("div", { class: "g-track" }, bar));
+      }) : el("p", { class: "note" }, "Answered straight from the database, no AI needed."))));
+  });
+  return box;
+}
+
+function feedCard(card) {
+  const label = { event: "Your event", festival: "Festival", trend: "Trending", price_drop: "Price drop" }[card.type];
+  return el("div", { class: `card ${card.image ? "" : "plain"}` },
+    card.image && el("img", { class: "thumb", src: img(card.image), alt: "", loading: "lazy" }),
+    el("div", {},
+      label && el("span", { class: "type" }, label),
+      el("b", {}, card.title || ""),
+      card.price && el("span", { class: "price" }, rupees(card.price)),
+      card.reason && el("div", {}, el("span", { class: "why" }, card.reason))));
+}
+
+function outcome(step) {
+  const o = step.outcome || {};
+  const parts = [];
+  if (o.error) parts.push(el("p", { class: "note" }, `Step failed: ${o.error}`));
+  if (o.message) parts.push(el("p", { class: "said" }, o.message));
+  if (o.understood?.length) parts.push(el("div", { class: "understood", "aria-label": "Understood" }, o.understood.map((c) => el("span", {}, c))));
+  const kv = [];
+  if (o.question) kv.push(["Asked back", o.question], ["They tapped", o.answered]);
+  if (o.looks?.length) kv.push(["Looks styled", o.looks.join(" · ")]);
+  if (o.greeting) kv.push(["AI greeting", `“${o.greeting}”`]);
+  if (o.ideas?.length) kv.push(["Ideas", o.ideas.join(" · ")]);
+  if (o.festivals?.length) kv.push(["Festivals", o.festivals.join(" · ")]);
+  if (o.loved?.length) kv.push(["Loved", o.loved.join(" · ")]);
+  if (o.skipped?.length) kv.push(["Skipped", o.skipped.join(" · ")]);
+  if (o.stored_on_server !== undefined) kv.push(["Stored on server", o.stored_on_server ? `${o.stored_on_server} signals` : "nothing (guest data stays on the phone)"]);
+  if (o.corrected) kv.push(["Corrected", `“Not me”: ${o.corrected}`]);
+  if (o.signed_in_as) kv.push(["Account", "created with consent (deleted after the recording)"]);
+  if (o.note) kv.push(["Mode", o.note]);
+  if (kv.length) parts.push(el("dl", { class: "kv" }, kv.flatMap(([k, v]) => [el("dt", {}, k), el("dd", {}, v)])));
+  const cards = o.after_love_on_device || o.feed;
+  if (cards?.length) {
+    parts.push(el("div", { class: "lane", style: "grid-template-columns:repeat(auto-fill,minmax(220px,1fr));display:grid" },
+      cards.slice(0, 4).map(feedCard)));
+  }
+  if (o.stories?.length) parts.push(el("div", { class: "understood" }, o.stories.map((s) => el("span", {}, `${s.title} (${s.looks.length})`))));
+  if (o.profile?.summary) parts.push(el("p", { class: "summary" }, o.profile.summary));
+  return parts;
+}
+
+function renderJourney() {
+  const p = run.personas[selected];
+  const box = document.getElementById("journey");
+  box.className = `journey p-${p.id}`;
+  box.replaceChildren(...p.steps.map((step, index) => {
+    const traces = step.traces || [];
+    let open = false;
+    const slot = el("div");
+    const toggle = traces.length ? el("button", {
+      class: "replay-btn", type: "button", "aria-expanded": "false",
+      onclick: (event) => {
+        open = !open;
+        event.currentTarget.setAttribute("aria-expanded", String(open));
+        event.currentTarget.textContent = open ? "Hide the backend replay" : "▶ Replay the backend";
+        slot.replaceChildren(...(open ? [replay(traces)] : []));
+      },
+    }, "▶ Replay the backend") : null;
+    return el("div", { class: "step" },
+      el("span", { class: "dot", "aria-hidden": "true" }, index + 1),
+      el("div", { class: `step-body ${step.screenshot ? "" : "no-shot"}` },
+        el("div", { style: "min-width:0" },
+          el("div", { class: "step-title" }, el("h3", {}, step.title),
+            el("span", { class: "meta" }, `${step.screen} · ${secs(step.seconds * 1000)}`)),
+          el("div", { class: "what" }, outcome(step)),
+          miniBar(traces), toggle, slot),
+        step.screenshot && el("figure", { class: "shot", style: "margin:0" },
+          el("img", { src: img(step.screenshot), alt: `${p.name}'s screen: ${step.title}`, loading: "lazy" }))));
+  }));
+}
+
+function renderSeg() {
+  const seg = document.getElementById("seg");
+  run.personas.forEach((p, i) => seg.append(el("button", { type: "button", "aria-pressed": String(i === selected), onclick: () => select(i) }, p.name)));
+  document.getElementById("legend").append(...Object.entries(KINDS).map(([k, label]) => el("span", { class: `k-${k}` }, el("i"), label)));
+}
+
+function laneHead(p, sub) {
+  return el("div", { class: "lane-head" }, el("span", { class: "avatar", "aria-hidden": "true" }, p.name[0]),
+    el("div", {}, el("b", {}, p.name), el("br"), el("span", {}, sub)));
+}
+
+function renderFeeds() {
+  document.getElementById("feeds").append(...run.personas.map((p) => {
+    const step = stepOf(p, "Comes back");
+    const cards = step?.outcome?.feed || [];
+    return el("div", { class: `lane p-${p.id}` }, laneHead(p, `${p.city} · ${fmtDate(p.date)}`),
+      cards.length ? cards.slice(0, 7).map(feedCard) : el("p", { class: "note" }, "No feed recorded."));
+  }));
+}
+
+function renderTaste() {
+  const dims = { style: "Style", occasion: "Occasion", colour: "Colour", fit: "Fit", price_band: "Price", brand: "Brands" };
+  document.getElementById("taste").append(...run.personas.map((p) => {
+    const profile = stepOf(p, "You")?.outcome?.profile;
+    const lane = el("div", { class: `taste-lane p-${p.id}` }, laneHead(p, p.trend));
+    if (!profile) return lane;
+    if (profile.summary) lane.append(el("p", { class: "summary" }, profile.summary));
+    for (const [dim, name] of Object.entries(dims)) {
+      const items = (profile.taste[dim] || []).slice(0, 3);
+      if (!items.length) continue;
+      lane.append(el("div", { class: "dim" }, el("span", { class: "dim-name" }, name),
+        items.map((item) => el("div", { class: "bar-row", title: item.why },
+          el("span", {}, item.label),
+          el("span", { class: "bar" }, el("i", { style: `width:${Math.max(item.confidence * 100, 4)}%` })),
+          el("span", { class: "num" }, `${Math.round(item.confidence * 100)}%`)))));
+    }
+    (profile.not_me || []).forEach((n) => lane.append(el("p", { class: "note" }, "“Not me”: ", el("span", { class: "struck" }, `${n.dimension} ${n.value}`), " is never used again")));
+    (profile.events || []).forEach((e) => lane.append(el("p", { class: "event" }, `📅 ${e.name}: ${fmtDate(e.date)} · ${e.days_away} days away`)));
+    const intents = Object.entries(profile.intents || {});
+    if (intents.length) lane.append(el("p", { class: "note" }, "Active intent: ", intents.map(([k, v]) => `${k} ${text(v.id || v.max || v)}`).join(", ")));
+    return lane;
+  }));
+}
+
+function counts(p) {
+  const steps = allSteps(p);
+  const by = (kind) => steps.filter((s) => s.kind === kind);
+  const gemma = by("gemma");
+  const signals = p.steps.map((s) => s.outcome?.stored_on_server || 0).reduce((a, b) => a + b, 0);
+  const guestStored = p.steps.filter((s) => s.title.includes("guest")).map((s) => s.outcome?.stored_on_server);
+  const feed = stepOf(p, "Comes back")?.outcome?.feed || [];
+  const profile = stepOf(p, "You")?.outcome?.profile;
+  return {
+    requests: allTraces(p).length,
+    gemma: gemma.length,
+    gemmaTime: gemma.reduce((a, s) => a + (s.ms || 0), 0),
+    catalog: by("catalog").length,
+    intent: by("intent").length,
+    context: by("context").length,
+    memory: by("memory").length,
+    signals,
+    guestStored: guestStored.length ? guestStored[0] : null,
+    reasons: feed.length ? Math.round((feed.filter((c) => c.reason).length / feed.length) * 100) : 0,
+    events: profile?.events?.length || 0,
+    feedMs: allTraces(p).filter((t) => t.path === "/api/feed").map((t) => t.ms),
+    chatMs: allTraces(p).filter((t) => t.path === "/api/chat").map((t) => t.ms),
+  };
+}
+
+function renderArch() {
+  const nodes = [
+    { kind: "gemma", title: "Gemma · understanding", note: "Reads the message in any language: intent, occasion, budget, dates.", match: (s) => s.kind === "gemma" && s.label.includes("Understanding") },
+    { kind: "gemma", title: "Gemma · styling and writing", note: "Complete looks, the For You page, advice.", match: (s) => s.kind === "gemma" && !s.label.includes("Understanding") },
+    { kind: "catalog", title: "Catalogue and look pool", note: "92k products, SQLite full-text search, live price and stock.", match: (s) => s.kind === "catalog" },
+    { kind: "intent", title: "Intent Engine", note: "Taste with confidence and decay, events, ranking with reasons.", match: (s) => s.kind === "intent" },
+    { kind: "context", title: "Context", note: "Weather, festival calendar, anonymous community trends.", match: (s) => s.kind === "context" },
+    { kind: "memory", title: "Vector memory", note: "Past chats recalled by meaning (sqlite-vec, on this server).", match: (s) => s.kind === "memory" },
+  ];
+  const hits = (node) => run.personas.map((p) => ({ p, n: allSteps(p).filter(node.match).length }));
+  const nodeEl = (node) => el("div", { class: `node k-${node.kind}` }, el("b", {}, node.title), el("small", {}, node.note),
+    el("div", { class: "hits" }, hits(node).map(({ p, n }) => el("span", { class: `p-${p.id}` }, `${p.name} ${n}`))));
+  document.getElementById("arch").append(
+    el("div", { class: "arch-col" }, el("div", { class: "node edge" }, el("b", {}, "Phone app (React PWA)"),
+      el("small", {}, "Chat, feed, voice, camera. Body measurements run on the phone (MediaPipe)."))),
+    el("div", { class: "arrow", "aria-hidden": "true" }, "→"),
+    el("div", { class: "arch-col" }, nodes.map(nodeEl)),
+    el("div", { class: "arrow", "aria-hidden": "true" }, "→"),
+    el("div", { class: "arch-col" }, el("div", { class: "node edge" }, el("b", {}, "Answer, streamed"),
+      el("small", {}, "Understood chips first, then the looks and real products, step by step (NDJSON)."))));
+}
+
+function renderScore() {
+  const c = run.personas.map(counts);
+  const avg = (list) => (list.length ? list.reduce((a, b) => a + b, 0) / list.length : 0);
+  const rows = [
+    ["Backend requests", (x) => x.requests],
+    ["Gemma calls", (x) => x.gemma],
+    ["Time in Gemma", (x) => secs(x.gemmaTime)],
+    ["Average chat answer", (x) => (x.chatMs.length ? secs(avg(x.chatMs)) : "–")],
+    ["Average feed page", (x) => (x.feedMs.length ? secs(avg(x.feedMs)) : "–")],
+    ["Catalogue lookups", (x) => x.catalog],
+    ["Intent Engine steps", (x) => x.intent],
+    ["Signals stored on the server", (x) => x.signals + (x.guestStored === 0 ? " (0 while a guest)" : "")],
+    ["Events remembered from the chat", (x) => x.events],
+    ["Feed cards with a reason", (x) => `${x.reasons}%`],
+  ];
+  const table = document.getElementById("score");
+  table.append(
+    el("thead", {}, el("tr", {}, el("th", {}, "Measure"), run.personas.map((p) => el("th", { class: `pc p-${p.id}` }, p.name)))),
+    el("tbody", {}, rows.map(([name, get]) => el("tr", {}, el("td", {}, name), c.map((x) => el("td", { class: "num" }, get(x)))))));
+}
+
+function renderPrivacy() {
+  document.getElementById("privacy").append(
+    el("div", {}, el("b", {}, "Different times of year"), "Each person ran with a test date (dev-only clock), so festivals and countdowns match their day. Weather is the live weather for their city at recording time."),
+    el("div", {}, el("b", {}, "Real model, real catalogue"), "Every answer came from Gemma and every product from the live catalogue. Nothing on this page was written by hand."),
+    el("div", {}, el("b", {}, "Nothing kept"), "Throwaway accounts were deleted after the run, which also removes everything learned. The guest's taste never left the phone. Ages came from what each person said."));
+}
+
+/* ================= Player ================= */
+const STORY = JSON.parse(document.getElementById("story").textContent);
+const NODES = [
+  { key: "understand", kind: "gemma", title: "Gemma · understanding", note: "Reads any language: intent, occasion, budget, dates" },
+  { key: "style", kind: "gemma", title: "Gemma · styling & writing", note: "Complete looks, the For You page" },
+  { key: "catalog", kind: "catalog", title: "Catalogue & look pool", note: "92k products, live price and stock" },
+  { key: "intent", kind: "intent", title: "Intent Engine", note: "Taste, events, ranking with reasons" },
+  { key: "context", kind: "context", title: "Context", note: "Weather, festivals, trends" },
+  { key: "memory", kind: "memory", title: "Vector memory", note: "Past chats recalled by meaning" },
+];
+const RECORD = location.hash.startsWith("#rec-");
+const player = { pid: 0, index: 0, playing: false, voice: !RECORD, timer: null, all: false, run: 0 };
+const $ = (id) => document.getElementById(id);
+const nodeEls = {};
+
+function badge(key, value) {
+  if (key === "catalog" && value && value < 200) return `${value} searches`;
+  if (!value) return "used";
+  return value >= 1000 ? `${(value / 1000).toFixed(1)} s` : `${value} ms`;
+}
+
+function renderPhone(scene, persona) {
+  const phone = scene.phone || {};
+  const screen = $("st-screen");
+  const box = el("div", { class: "ph" });
+  const later = (fn, ms) => setTimeout(() => { if (player.run === runId) fn(); }, ms);
+  const runId = player.run;
+  switch (phone.kind) {
+    case "intro": {
+      box.className = `ph ph-intro p-${persona.id}`;
+      const w = phone.weather;
+      box.append(el("div", { class: "big" }, phone.name[0]), el("h4", {}, phone.name),
+        el("p", {}, `${phone.age} · ${phone.city}`),
+        el("span", { class: "ph-chip" }, fmtDate(phone.date)), el("p", { style: "color:#766f86" }, phone.when),
+        w && el("span", { class: "ph-chip" }, `🌡 ${w.high}°C · ${w.feel}${w.rain ? " · rain" : ""}`),
+        el("p", { style: "font-weight:600" }, phone.trend));
+      break;
+    }
+    case "screen":
+      screen.replaceChildren(el("img", { class: "shot-img", src: img(phone.image), alt: "" }));
+      return;
+    case "gallery": {
+      // The photo picker, then the app with the photo attached
+      box.append(el("p", { class: "ph-head" }, "Choose a photo"),
+        el("div", { class: "ph-gallery" },
+          el("span"), el("span"),
+          el("figure", { class: "ph-pick" }, el("img", { src: img(phone.image), alt: "" }), el("i", {}, "✓")),
+          el("span"), el("span"), el("span")));
+      screen.replaceChildren(box);
+      if (phone.attached) later(() => screen.replaceChildren(el("img", { class: "shot-img", src: img(phone.attached), alt: "" })), 3200);
+      return;
+    }
+    case "camera": {
+      // The real viewfinder, the shutter flash, then the photo attached
+      screen.replaceChildren(el("img", { class: "shot-img", src: img(phone.image), alt: "" }));
+      later(() => screen.append(el("div", { class: "ph-flash" })), 2600);
+      if (phone.attached) later(() => screen.replaceChildren(el("img", { class: "shot-img", src: img(phone.attached), alt: "" })), 3300);
+      return;
+    }
+    case "typing": {
+      box.append(el("p", { class: "ph-head" }, "✦ Stylist"));
+      if (phone.image) box.append(el("div", { class: "ph-attached" }, el("img", { src: img(phone.image), alt: "" }), "Photo attached"));
+      const typed = el("span");
+      box.append(el("div", { class: "ph-composer" }, typed, el("span", { class: "caret" })));
+      const text = phone.text || "";
+      const step = Math.max(18, Math.min(55, 2600 / Math.max(text.length, 1)));
+      [...text].forEach((_, i) => later(() => { typed.textContent = text.slice(0, i + 1); }, 500 + i * step));
+      // Sent: the message moves into the chat and the box clears
+      later(() => {
+        box.insertBefore(el("div", { class: "ph-bubble" }, text), box.lastChild);
+        typed.textContent = "";
+      }, 900 + text.length * step);
+      break;
+    }
+    case "chat": {
+      box.append(el("p", { class: "ph-head" }, "✦ Stylist"),
+        el("div", { class: "ph-bubble" }, phone.image && el("img", { class: "ph-bubble-img", src: img(phone.image), alt: "" }), phone.text));
+      const chips = el("div", { class: "ph-chips" });
+      box.append(el("div", { class: "ph-bot" }, el("p", { style: "margin-bottom:6px;color:#766f86" }, "Understood"), chips));
+      (phone.chips || []).forEach((chip, i) => later(() => chips.append(el("span", {}, chip)), 600 + i * 450));
+      if (phone.question) {
+        const answer = el("span", {}, phone.answer);
+        const opts = el("div", { class: "ph-options" }, answer);
+        box.append(el("div", { class: "ph-bot" }, phone.question, opts));
+        later(() => answer.classList.add("tap"), 2200);
+      }
+      break;
+    }
+    case "feed":
+      box.append(el("p", { class: "ph-head" }, "Home"));
+      (phone.cards || []).forEach((c, i) => {
+        const label = { event: "Your event", festival: "Festival", trend: "Trending", price_drop: "Price drop" }[c.type];
+        box.append(el("div", { class: `ph-card ${c.image ? "" : "plain"}`, style: `animation-delay:${0.3 + i * 0.35}s` },
+          c.image && el("img", { src: img(c.image), alt: "" }),
+          el("div", {}, label && el("span", { class: "ph-type" }, label), el("b", {}, c.title || ""),
+            c.price && el("small", {}, rupees(c.price)), c.reason && el("span", { class: "ph-why" }, c.reason))));
+      });
+      break;
+    case "signals":
+      box.append(el("p", { class: "ph-head" }, "Home"));
+      (phone.loved || []).forEach((t, i) => box.append(el("div", { class: "ph-sig", style: `animation-delay:${0.3 + i * 0.5}s` }, el("i", { style: `animation-delay:${0.5 + i * 0.5}s` }, "♥"), t)));
+      (phone.skipped || []).forEach((t, i) => box.append(el("div", { class: "ph-sig", style: `animation-delay:${1.8 + i * 0.4};opacity:.7` }, el("i", {}, "✕"), t)));
+      box.append(el("div", { class: "ph-store", style: "animation-delay:2.6s" },
+        el("b", {}, String(phone.stored)), phone.guest ? "signals stored on the server. It stays on the phone." : "signals stored for learning"));
+      break;
+    case "notme": {
+      box.append(el("p", { class: "ph-head" }, "You"));
+      const chip = el("span", { class: "ph-chip", style: "font-size:13px;align-self:flex-start" }, `Not me: ${phone.value}`);
+      box.append(chip);
+      later(() => chip.classList.add("ph-strike"), 1600);
+      (phone.cards || []).forEach((c, i) => box.append(el("div", { class: `ph-card ${c.image ? "" : "plain"}`, style: `animation-delay:${2 + i * 0.35}s` },
+        c.image && el("img", { src: img(c.image), alt: "" }), el("div", {}, el("b", {}, c.title || ""), c.reason && el("span", { class: "ph-why" }, c.reason)))));
+      break;
+    }
+    case "profile":
+      box.append(el("p", { class: "ph-head" }, "What OmniFit learned"),
+        el("p", { style: "font-family:var(--display);font-style:italic;font-size:14px;line-height:1.35;animation:rise .5s both" }, phone.summary || ""));
+      (phone.bars || []).forEach((b, i) => box.append(el("div", { class: "ph-bar", style: `animation:rise .4s ${0.4 + i * 0.2}s both` },
+        el("span", {}, b.label), el("u", {}, el("i", { style: `width:${Math.max(b.confidence * 100, 5)}%;animation-delay:${0.5 + i * 0.2}s` })),
+        el("span", {}, `${Math.round(b.confidence * 100)}%`))));
+      (phone.events || []).forEach((e) => box.append(el("span", { class: "ph-chip", style: "align-self:flex-start;animation:pop .5s 1.8s both" }, `📅 ${e.name} · ${e.days_away} days`)));
+      (phone.not_me || []).forEach((n) => box.append(el("span", { class: "ph-chip ph-strike", style: "align-self:flex-start" }, `${n.dimension}: ${n.value}`)));
+      break;
+    case "outro":
+      box.className = "ph ph-intro";
+      box.append(el("p", { class: "ph-num" }, phone.requests), el("p", {}, "requests"),
+        el("p", { class: "ph-num" }, phone.gemma), el("p", {}, "AI calls (Gemma)"),
+        el("p", { class: "ph-num" }, `${phone.feed_ms} ms`), el("p", {}, "slowest feed page"),
+        el("span", { class: "ph-chip" }, "Account deleted afterwards"));
+      break;
+    default:
+      break;
+  }
+  screen.replaceChildren(box);
+}
+
+function renderScene() {
+  const persona = STORY.personas[player.pid];
+  const scene = persona.scenes[player.index];
+  player.run += 1;
+  const runId = player.run;
+  $("stage").className = `stage p-${persona.id}`;
+  $("st-avatar").textContent = persona.name[0];
+  $("st-name").textContent = persona.name;
+  $("st-meta").textContent = `${persona.age} · ${persona.city}`;
+  $("st-count").textContent = `Scene ${player.index + 1} of ${persona.scenes.length}`;
+  $("st-title").textContent = scene.title;
+  $("st-caption").textContent = scene.caption;
+  renderPhone(scene, persona);
+
+  NODES.forEach((node) => {
+    const on = Object.prototype.hasOwnProperty.call(scene.nodes || {}, node.key);
+    nodeEls[node.key].classList.remove("on");
+    if (on) {
+      nodeEls[node.key].querySelector("em").textContent = badge(node.key, scene.nodes[node.key]);
+      setTimeout(() => { if (player.run === runId) nodeEls[node.key].classList.add("on"); }, 500);
+    }
+  });
+  const log = $("st-log");
+  log.replaceChildren();
+  (scene.log || []).forEach((row, i) => setTimeout(() => {
+    if (player.run !== runId) return;
+    log.append(el("li", { class: `k-${row.kind}` }, el("i"), el("span", {}, row.label), row.ms ? el("b", {}, secs(row.ms)) : null));
+  }, 700 + i * 380));
+  if (!scene.log?.length) log.append(el("li", { class: "k-stream" }, el("i"), el("span", {}, "No backend work in this step")));
+
+  const progress = $("st-progress");
+  progress.replaceChildren(...persona.scenes.map((_, i) => el("i", { class: i < player.index ? "done" : i === player.index ? "now" : "" }, i === player.index ? el("b") : null)));
+  return scene;
+}
+
+function sceneMs(scene) {
+  if (scene.seconds) return scene.seconds * 1000 + 700;
+  return Math.max(4000, (scene.narration.split(/\s+/).length / 2.6) * 1000 + 1200);
+}
+
+function pickVoice() {
+  const voices = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+  return voices.find((v) => v.lang === "en-IN") || voices.find((v) => /en-GB/.test(v.lang)) || voices.find((v) => /^en/.test(v.lang)) || null;
+}
+
+function playScene() {
+  clearTimeout(player.timer);
+  if (window.speechSynthesis) speechSynthesis.cancel();
+  const scene = renderScene();
+  const runId = player.run;
+  const minMs = sceneMs(scene);
+  const bar = document.querySelector(".st-progress i.now b");
+  if (!player.playing) { if (bar) bar.style.animation = "none"; return; }
+  if (bar) bar.style.animationDuration = `${minMs}ms`;
+  let spoke = !player.voice || !window.speechSynthesis;
+  let waited = false;
+  const advance = () => { if (player.run === runId && spoke && waited) next(true); };
+  player.timer = setTimeout(() => { waited = true; advance(); }, minMs);
+  if (!spoke) {
+    const utterance = new SpeechSynthesisUtterance(scene.narration);
+    const voice = pickVoice();
+    if (voice) utterance.voice = voice;
+    utterance.rate = 1;
+    utterance.onend = () => { spoke = true; advance(); };
+    utterance.onerror = () => { spoke = true; advance(); };
+    speechSynthesis.speak(utterance);
+  }
+}
+
+function next(auto = false) {
+  const persona = STORY.personas[player.pid];
+  if (player.index < persona.scenes.length - 1) {
+    player.index += 1;
+  } else if (auto && player.all && player.pid < STORY.personas.length - 1) {
+    player.pid += 1; player.index = 0; updatePeople();
+  } else if (auto) {
+    setPlaying(false);
+    window.__done = true;
+    return;
+  }
+  if (RECORD) window.__timeline.push({ wall: Date.now(), pid: player.pid, index: player.index });
+  playScene();
+}
+
+function prev() { player.index = Math.max(0, player.index - 1); playScene(); }
+
+function setPlaying(value) {
+  player.playing = value;
+  $("btn-play").textContent = value ? "⏸ Pause" : "▶ Play";
+  if (!value) { clearTimeout(player.timer); if (window.speechSynthesis) speechSynthesis.cancel(); }
+}
+
+function updatePeople() {
+  document.querySelectorAll("#watch-people button").forEach((b, i) => b.setAttribute("aria-pressed", String(!player.all && i === player.pid || player.all && b.dataset.all)));
+}
+
+function fitStage() {
+  const wrap = $("stage-wrap");
+  const scale = wrap.clientWidth / 1280;
+  $("stage").style.transform = `scale(${scale})`;
+  wrap.style.height = `${720 * scale}px`;
+}
+
+function initPlayer() {
+  $("st-nodes").append(...NODES.map((node) => {
+    nodeEls[node.key] = el("div", { class: `st-node k-${node.kind}` }, el("em"), el("b", {}, node.title), el("small", {}, node.note));
+    return nodeEls[node.key];
+  }));
+  const people = $("watch-people");
+  STORY.personas.forEach((p, i) => people.append(el("button", { type: "button", "aria-pressed": String(i === 0), onclick: () => {
+    player.pid = i; player.index = 0; player.all = false; updatePeople(); setPlaying(true); playScene();
+  } }, p.name)));
+  people.append(el("button", { type: "button", "data-all": "1", "aria-pressed": "false", onclick: () => {
+    player.pid = 0; player.index = 0; player.all = true; updatePeople(); setPlaying(true); playScene();
+  } }, "All three"));
+  $("btn-play").addEventListener("click", () => { setPlaying(!player.playing); playScene(); });
+  $("btn-next").addEventListener("click", () => next());
+  $("btn-prev").addEventListener("click", prev);
+  $("btn-voice").addEventListener("click", (event) => {
+    player.voice = !player.voice;
+    event.currentTarget.setAttribute("aria-pressed", String(player.voice));
+    event.currentTarget.textContent = player.voice ? "🔊 Voice on" : "🔇 Voice off";
+    if (!player.voice && window.speechSynthesis) speechSynthesis.cancel();
+  });
+  if (!window.speechSynthesis) { $("btn-voice").disabled = true; $("btn-voice").textContent = "Captions only"; }
+  new ResizeObserver(fitStage).observe($("stage-wrap"));
+  fitStage();
+
+  if (RECORD) {
+    document.body.classList.add("record");
+    player.pid = Math.max(0, STORY.personas.findIndex((p) => p.id === location.hash.slice(5)));
+    window.__timeline = [];
+    window.__go = () => { window.__timeline.push({ wall: Date.now(), pid: player.pid, index: 0 }); setPlaying(true); playScene(); };
+  }
+  renderScene();
+}
+initPlayer();
+
+Promise.resolve().then(() => JSON.parse(document.getElementById("recording").textContent)).then((data) => {
+  run = data;
+  renderHero(); renderSeg(); renderJourney(); renderFeeds(); renderTaste(); renderArch(); renderScore(); renderPrivacy();
+}).catch(() => {
+  document.getElementById("journey").replaceChildren(el("p", { class: "note" }, "The recording could not be loaded."));
+});
+</script>

@@ -1,0 +1,8 @@
+fastapi==0.141.1
+uvicorn==0.53.0
+httpx==0.28.1
+python-dotenv==1.2.3
+python-multipart==0.0.32
+sqlite-vec==0.1.9
+fastembed==0.8.1
+faster-whisper==1.2.1

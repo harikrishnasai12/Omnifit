@@ -1,0 +1,432 @@
+/* ==========================================================
+   The way in (ask bar), what OmniFit decided (mode switch), the
+   stylist's looks as boards, and Brand insights.
+   Uses the tokens from App.css; dark mode comes with them.
+   ========================================================== */
+
+/* ---------- Ask bar: Home and Explore ---------- */
+
+.ask-bar {
+  align-items: center;
+  padding-left: 8px;
+}
+
+.ask-bar input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
+.ask-bar-photo {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--surface-muted);
+  color: var(--ink);
+  font-size: 19px;
+  transition: transform 0.15s;
+}
+
+.ask-bar-photo:active {
+  transform: scale(0.94);
+}
+
+.ask-bar .send-button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.ask-bar-error {
+  margin: -14px 0 16px;
+}
+
+/* On Home the photo is the main way in: the camera wears the AI gradient */
+.ask-bar.hero {
+  height: 60px;
+  margin: 0 0 12px;
+  box-shadow: var(--shadow-md);
+}
+
+.ask-bar.hero .ask-bar-photo {
+  background: var(--ai-gradient);
+  color: #fff;
+  box-shadow: 0 0 0 2px var(--marigold);
+}
+
+/* Header (56px) + ask bar (60px + 12px) sit above the full-height feed */
+.home-feed {
+  --feed-top: 128px;
+}
+
+.home-feed .feed-top {
+  height: 56px;
+}
+
+/* ---------- "Showing products" / "Styling your outfit" ---------- */
+
+.mode-switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+  margin: 10px 0 4px;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.mode-switch button {
+  min-height: 44px;
+  padding: 0 4px;
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mode-switch button:disabled {
+  opacity: 0.5;
+}
+
+/* ---------- Look board: one of the stylist's looks at a glance ---------- */
+
+.look-board {
+  margin: 14px 0 6px;
+}
+
+.look-board-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .look-board-tiles {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+.board-tile {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  animation: fadeIn 0.35s ease both;
+}
+
+.board-tile img,
+.board-tile-wait,
+.board-tile-name {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+}
+
+.board-tile img {
+  display: block;
+  object-fit: cover;
+  background: var(--surface-muted);
+}
+
+.board-tile-name {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 14px;
+  background: var(--surface-muted);
+  color: var(--ink-soft);
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.board-tile-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px 11px 11px;
+  font-size: 12.5px;
+}
+
+.board-tile-slot {
+  color: var(--accent);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.board-tile-price {
+  color: var(--muted);
+}
+
+.board-tile-price strong {
+  color: var(--ink);
+}
+
+/* Pieces the user already has: set apart from the ones to buy */
+.board-tile.kept {
+  border: 1.5px dashed var(--success);
+  background: var(--success-soft);
+}
+
+.board-tile.kept .board-tile-name {
+  background: none;
+  color: var(--ink);
+}
+
+.board-tile.kept .board-tile-slot {
+  color: var(--success);
+}
+
+.board-shop {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 12px;
+}
+
+.outfit-details {
+  margin: 12px 0;
+}
+
+.outfit-details > summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  color: var(--accent);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.outfit-details[open] > summary {
+  margin-bottom: 8px;
+}
+
+/* ---------- Size learned at checkout ---------- */
+
+.size-toast {
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 8px 4px 16px;
+}
+
+.size-toast button {
+  min-height: 40px;
+  padding: 0 10px;
+  border: none;
+  background: none;
+  color: var(--marigold);
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+/* ---------- Brand insights ---------- */
+
+.insights {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+.insights-note {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.insights-pick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.insights-demo {
+  margin: 0 0 16px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--marigold-soft);
+  color: var(--marigold-ink);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.insights-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.insights-tile,
+.insights-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.insights-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+}
+
+.insights-tile span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.insights-tile strong {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.insights-card {
+  margin-bottom: 16px;
+  padding: 20px;
+}
+
+.insights-card h2 {
+  margin-bottom: 12px;
+  font-family: var(--font-display);
+  font-size: 21px;
+}
+
+.insights-card table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.insights-card thead th {
+  padding: 0 0 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.insights-card thead th:first-child {
+  text-align: left;
+}
+
+.insights-card tbody th {
+  padding: 10px 16px 10px 0;
+  font-weight: 600;
+  text-align: left;
+}
+
+.insights-card tbody td {
+  padding: 10px 0 10px 16px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.insights-card tbody tr {
+  border-top: 1px solid var(--border);
+}
+
+.insights-card tbody tr:hover {
+  background: var(--surface-soft);
+}
+
+/* One measure, one colour: bar length is shoppers at each step */
+.insights-bar {
+  display: block;
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 4px;
+  background: var(--surface-muted);
+}
+
+.insights-bar span {
+  display: block;
+  height: 100%;
+  min-width: 4px;
+  border-radius: 4px;
+  background: var(--accent);
+}
+
+.insights-gap {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--marigold-soft);
+  color: var(--marigold-ink);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.insights-audience {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
+}
+
+.insights-audience h3 {
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.insights-audience ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.insights-audience li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 0;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.insights-audience small,
+.insights-foot,
+.insights-empty {
+  color: var(--muted);
+}
+
+.insights-audience small {
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.insights-foot {
+  margin-top: 12px;
+  font-size: 12.5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-tile {
+    animation: none;
+  }
+
+  .ask-bar-photo {
+    transition: none;
+  }
+}

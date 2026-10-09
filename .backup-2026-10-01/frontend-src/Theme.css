@@ -1,0 +1,348 @@
+/* ==========================================================
+   Midnight & Marigold: signature touches and dark mode.
+   Loaded last, so it refines App.css / Chat.css / Shell.css.
+   ========================================================== */
+
+/* ---------- Background: a soft aurora instead of a flat page ---------- */
+
+:root {
+  --aurora-violet: rgba(107, 79, 216, 0.16);
+  --aurora-marigold: rgba(242, 167, 27, 0.16);
+  --aurora-rose: rgba(232, 69, 107, 0.08);
+  --aurora-base: linear-gradient(180deg, #f6f2ff 0%, #fbf9f6 45%, #fff8ec 100%);
+}
+
+body {
+  background: var(--bg);
+}
+
+/* Fixed layer behind everything (a pseudo-element, so it stays put while
+   scrolling on phones too, where background-attachment: fixed is ignored) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60vmax 45vmax at 8% -8%, var(--aurora-violet), transparent 65%),
+    radial-gradient(55vmax 40vmax at 100% 108%, var(--aurora-marigold), transparent 65%),
+    radial-gradient(40vmax 30vmax at 92% 12%, var(--aurora-rose), transparent 70%),
+    var(--aurora-base);
+}
+
+/* The composer floats over the aurora instead of sitting in a flat band */
+.composer-wrap {
+  background: none;
+}
+
+.composer {
+  box-shadow: 0 12px 40px -12px rgba(34, 26, 61, 0.28), var(--shadow-sm);
+}
+
+/* Bars sit on frosted glass over the aurora */
+@media (min-width: 900px) {
+  .app-nav {
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
+
+/* ---------- The AI has its own colour: the midnight gradient ---------- */
+
+.bot-avatar,
+.send-button,
+.avatar-button {
+  background: var(--ai-gradient);
+  color: #fff;
+}
+
+.send-button:hover:not(:disabled) {
+  box-shadow: var(--ai-glow);
+}
+
+.app-nav-item.orb .app-nav-icon {
+  background: var(--ai-gradient);
+  color: #fff;
+  box-shadow: 0 0 0 2px var(--marigold), var(--ai-glow);
+}
+
+.app-nav-item.orb:hover .app-nav-icon,
+.app-nav-item.orb.active .app-nav-icon {
+  box-shadow: 0 0 0 3px var(--marigold), 0 12px 34px rgba(107, 79, 216, 0.5);
+}
+
+.primary-button,
+.banner-primary {
+  background: var(--ai-gradient);
+}
+
+.primary-button:hover:not(:disabled),
+.banner-primary:hover:not(:disabled) {
+  background: var(--ai-gradient);
+  box-shadow: var(--ai-glow);
+}
+
+/* Headlines written by the AI get a touch of the gradient */
+.hero h1 span,
+.foryou-header h1 em {
+  background: var(--ai-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Suggestions the AI writes: starters and next steps ---------- */
+
+.starters-note {
+  margin: 18px 0 -6px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.next-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.next-steps button {
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-align: left;
+  transition: border-color 0.2s, transform 0.15s;
+  animation: fadeIn 0.3s ease both;
+}
+
+.next-steps button:hover:not(:disabled) {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.next-steps button:disabled {
+  opacity: 0.5;
+}
+
+/* ---------- Style Scan: the optional age group / section guess ---------- */
+
+.scan-optin {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 4px 0 14px;
+  padding: 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.scan-optin input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--accent);
+}
+
+.scan-suggestion {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  background: var(--marigold-soft);
+  color: var(--ink);
+  font-size: 13.5px;
+}
+
+.scan-suggestion p {
+  margin: -6px 0 0;
+  color: var(--marigold-ink);
+}
+
+.scan-suggestion-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.scan-suggestion-row > span {
+  flex-basis: 100%;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ---------- Marigold: highlights ---------- */
+
+.live-dot {
+  background: var(--marigold);
+}
+
+.feed-kicker,
+.look-badge {
+  color: var(--marigold-ink);
+}
+
+.look-badge {
+  background: var(--marigold-soft);
+}
+
+.festival-chip {
+  border-color: transparent;
+  background: var(--marigold-soft);
+}
+
+.festival-chip:hover {
+  border-color: var(--marigold);
+}
+
+.festival-chip span {
+  color: var(--marigold-ink);
+}
+
+.ai-badge {
+  background: var(--marigold-soft);
+  color: var(--marigold-ink);
+}
+
+.understood-chips span {
+  border-color: transparent;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.today-card {
+  border-color: transparent;
+  box-shadow: 0 0 0 1.5px var(--accent), var(--shadow-md);
+}
+
+/* Active tab: accent text with a marigold marker */
+@media (max-width: 899px) {
+  .app-nav-item:not(.orb).active .app-nav-icon {
+    position: relative;
+  }
+
+  .app-nav-item:not(.orb).active .app-nav-icon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -3px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--marigold);
+    transform: translateX(-50%);
+  }
+
+  .topbar {
+    background: var(--glass);
+  }
+}
+
+@media (min-width: 900px) {
+  .app-nav-item.active {
+    box-shadow: inset 3px 0 0 var(--marigold);
+  }
+}
+
+/* ---------- Dark mode (follows the device; data-theme can force it) ---------- */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --bg: #0f0c18;
+    --surface: #1b1628;
+    --surface-soft: #171223;
+    --surface-muted: #241e35;
+    --border: #2e2742;
+    --border-strong: #3d3456;
+    --glass: rgba(15, 12, 24, 0.82);
+
+    --ink: #f3f0fa;
+    --ink-soft: #cbc4dc;
+    --muted: #9a92ae;
+
+    --accent: #a996ff;
+    --accent-soft: #2a2247;
+    --solid: #6b4fd8;
+    --solid-hover: #7d63e6;
+    --ai-gradient: linear-gradient(135deg, #4a37a0 0%, #8a70f0 100%);
+    --ai-glow: 0 10px 30px rgba(138, 112, 240, 0.35);
+
+    --marigold: #f5b73d;
+    --marigold-soft: #3a2c12;
+    --marigold-ink: #f5c96a;
+    --love: #ff6b8b;
+
+    --success: #5fcf95;
+    --success-soft: #16301f;
+    --danger: #ff7a7f;
+    --danger-soft: #3a1618;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.3), 0 14px 40px rgba(0, 0, 0, 0.4);
+
+    --aurora-violet: rgba(138, 112, 240, 0.22);
+    --aurora-marigold: rgba(245, 183, 61, 0.1);
+    --aurora-rose: rgba(255, 107, 139, 0.08);
+    --aurora-base: linear-gradient(180deg, #120d22 0%, #0f0c18 50%, #140f16 100%);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #0f0c18;
+  --surface: #1b1628;
+  --surface-soft: #171223;
+  --surface-muted: #241e35;
+  --border: #2e2742;
+  --border-strong: #3d3456;
+  --glass: rgba(15, 12, 24, 0.82);
+
+  --ink: #f3f0fa;
+  --ink-soft: #cbc4dc;
+  --muted: #9a92ae;
+
+  --accent: #a996ff;
+  --accent-soft: #2a2247;
+  --solid: #6b4fd8;
+  --solid-hover: #7d63e6;
+  --ai-gradient: linear-gradient(135deg, #4a37a0 0%, #8a70f0 100%);
+  --ai-glow: 0 10px 30px rgba(138, 112, 240, 0.35);
+
+  --marigold: #f5b73d;
+  --marigold-soft: #3a2c12;
+  --marigold-ink: #f5c96a;
+  --love: #ff6b8b;
+
+  --success: #5fcf95;
+  --success-soft: #16301f;
+  --danger: #ff7a7f;
+  --danger-soft: #3a1618;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.3), 0 14px 40px rgba(0, 0, 0, 0.4);
+
+  --aurora-violet: rgba(138, 112, 240, 0.22);
+  --aurora-marigold: rgba(245, 183, 61, 0.1);
+  --aurora-rose: rgba(255, 107, 139, 0.08);
+  --aurora-base: linear-gradient(180deg, #120d22 0%, #0f0c18 50%, #140f16 100%);
+}

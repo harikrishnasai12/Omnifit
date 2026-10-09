@@ -1,0 +1,353 @@
+/* ==========================================================
+   Glass & glow: the dark, moving look of the whole app.
+   Loaded last. It only changes colours, surfaces and motion;
+   layout, wording and behaviour stay as they are.
+   ========================================================== */
+
+/* ---------- Colours: near-black, with many bright colours on top ---------- */
+
+:root,
+:root:not([data-theme="light"]),
+:root[data-theme="dark"],
+:root[data-theme="light"] {
+  color-scheme: dark;
+
+  --bg: #050507;
+  --surface: #17171c;
+  --surface-soft: #111115;
+  --surface-muted: #232329;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --glass: rgba(10, 10, 14, 0.66);
+
+  --ink: #fafafa;
+  --ink-soft: #d4d4dc;
+  --muted: #9a9aa6;
+
+  --accent: #4cb5f9;
+  --accent-soft: rgba(76, 181, 249, 0.16);
+  --solid: #3b5bdb;
+  --solid-hover: #4c6ef5;
+  --ai-gradient: linear-gradient(45deg, #f9a03f 0%, #f0456a 35%, #c13fbf 68%, #5b5fe8 100%);
+  --ai-glow: 0 10px 34px rgba(240, 69, 106, 0.4);
+
+  --marigold: #f7b93e;
+  --marigold-soft: rgba(247, 185, 62, 0.16);
+  --marigold-ink: #f9cf7a;
+  --love: #ff3355;
+
+  --success: #5fcf95;
+  --success-soft: rgba(95, 207, 149, 0.16);
+  --danger: #ff7a7f;
+  --danger-soft: rgba(255, 122, 127, 0.16);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35), 0 4px 14px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.35), 0 18px 48px rgba(0, 0, 0, 0.5);
+
+  --glass-card: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.035) 100%);
+  --glass-edge: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --marigold-glow: 0 0 0 1px rgba(247, 185, 62, 0.55), 0 10px 34px -8px rgba(247, 185, 62, 0.4);
+}
+
+/* ---------- Background: slow-moving colour over deep night ---------- */
+
+body::before {
+  background: linear-gradient(160deg, #0d0d14 0%, #050507 50%, #0f0a0d 100%);
+}
+
+/* The moving colour sits on its own oversized layer, so only it is animated */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -25%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 32% at 22% 24%, rgba(240, 69, 106, 0.2), transparent 70%),
+    radial-gradient(30% 28% at 78% 30%, rgba(91, 95, 232, 0.22), transparent 70%),
+    radial-gradient(34% 30% at 70% 78%, rgba(249, 160, 63, 0.16), transparent 70%),
+    radial-gradient(28% 26% at 24% 80%, rgba(40, 200, 220, 0.12), transparent 70%);
+  animation: glassDrift 36s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes glassDrift {
+  0% { transform: translate3d(-4%, -3%, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(5%, 4%, 0) rotate(8deg) scale(1.1); }
+  100% { transform: translate3d(-3%, 6%, 0) rotate(-6deg) scale(1.04); }
+}
+
+/* ---------- Frosted glass: cards and panels ---------- */
+
+.panel,
+.trends-card,
+.wardrobe-card,
+.result-card,
+.seen-panel,
+.option-card,
+.product-card,
+.outfit-piece,
+.taste-card,
+.library-card,
+.location-banner,
+.starter,
+.bot-wardrobe-outfit,
+.occasion-card,
+.foryou-action,
+.feed-card,
+.idea-card,
+.dna-item,
+.board-tile,
+.insights-tile,
+.insights-card,
+.look-card,
+.feed-special,
+.tryon-product,
+.tryon-garment,
+.tryon-consent,
+.tryon-shot {
+  border-color: var(--border);
+  background: var(--glass-card);
+  box-shadow: var(--glass-edge), 0 12px 32px -14px rgba(0, 0, 0, 0.6);
+}
+
+/* Bars and floating pieces: glass with the page blurred behind them */
+.app-nav,
+.topbar,
+.composer,
+.explore-search,
+.ask-bar {
+  border-color: var(--border);
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+.composer {
+  box-shadow: var(--glass-edge), 0 16px 44px -14px rgba(0, 0, 0, 0.7);
+}
+
+.composer:focus-within,
+.explore-search:focus-within,
+.ask-bar:focus-within {
+  box-shadow: var(--marigold-glow);
+}
+
+/* Things that open over the page stay readable: nearly solid, blurred behind */
+.dialog,
+.product-sheet,
+.account-dropdown,
+.attach-menu {
+  border: 1px solid var(--border);
+  background: rgba(23, 23, 28, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--glass-edge), var(--shadow-md);
+}
+
+/* ---------- Glow: buttons, the orb and highlights ---------- */
+
+.primary-button,
+.banner-primary,
+.send-button {
+  transition: transform 0.15s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.primary-button:hover:not(:disabled),
+.banner-primary:hover:not(:disabled),
+.send-button:hover:not(:disabled) {
+  box-shadow: var(--ai-glow), var(--marigold-glow);
+  filter: brightness(1.08);
+}
+
+.primary-button:active:not(:disabled),
+.banner-primary:active:not(:disabled),
+.send-button:active:not(:disabled),
+.ghost-light:active:not(:disabled),
+.secondary-button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.ghost-light,
+.secondary-button {
+  border-color: var(--border-strong);
+  background: rgba(255, 255, 255, 0.06);
+  transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.ghost-light:hover:not(:disabled),
+.secondary-button:hover:not(:disabled) {
+  border-color: var(--marigold);
+  background: rgba(247, 185, 62, 0.1);
+}
+
+.app-nav-item.orb .app-nav-icon {
+  animation: orbGlow 3.6s ease-in-out infinite;
+}
+
+@keyframes orbGlow {
+  0%, 100% { box-shadow: 0 0 0 2px #fff, 0 0 18px rgba(240, 69, 106, 0.5); }
+  50% { box-shadow: 0 0 0 2px #fff, 0 0 34px rgba(249, 160, 63, 0.6); }
+}
+
+.eyebrow,
+.starters-note,
+.feed-kicker {
+  color: var(--marigold);
+  text-shadow: 0 0 18px rgba(247, 185, 62, 0.45);
+}
+
+.hero h1 span,
+.foryou-header h1 em {
+  background: linear-gradient(100deg, #f9a03f 0%, #f0456a 40%, #c13fbf 70%, #6f7bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.today-card {
+  box-shadow: 0 0 0 1.5px var(--marigold), 0 0 40px -10px rgba(247, 185, 62, 0.45);
+}
+
+/* ---------- Colour: each kind of thing has its own ---------- */
+
+:root {
+  --pink: #f0456a;
+  --orange: #f9a03f;
+  --violet: #b56bff;
+  --blue: #4cb5f9;
+  --green: #4fd38a;
+}
+
+/* Your messages: a blue-to-violet bubble; the stylist's avatar: the warm ring */
+.msg.user .bubble {
+  background: linear-gradient(135deg, #a033ff 0%, #5b5fe8 50%, #2f8cff 100%);
+  color: #fff;
+}
+
+.brand-live {
+  background: var(--ai-gradient);
+  color: #fff;
+}
+
+.app-nav-item.active {
+  color: #fff;
+}
+
+@media (min-width: 900px) {
+  .app-nav-item.active {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: inset 3px 0 0 var(--pink);
+  }
+}
+
+/* Chips and suggestions cycle through the colours instead of sharing one */
+.understood-chips span,
+.next-steps button {
+  --chip: var(--blue);
+  border-color: transparent;
+  background: color-mix(in srgb, var(--chip) 18%, transparent);
+  color: var(--chip);
+}
+
+:is(.understood-chips span, .next-steps button):nth-child(5n + 1) { --chip: var(--pink); }
+:is(.understood-chips span, .next-steps button):nth-child(5n + 2) { --chip: var(--orange); }
+:is(.understood-chips span, .next-steps button):nth-child(5n + 3) { --chip: var(--blue); }
+:is(.understood-chips span, .next-steps button):nth-child(5n + 4) { --chip: var(--green); }
+:is(.understood-chips span, .next-steps button):nth-child(5n + 5) { --chip: var(--violet); }
+
+.next-steps button:hover:not(:disabled) {
+  border-color: var(--chip);
+}
+
+/* Answer buttons: a ring in the warm gradient */
+.question-options button {
+  border: 1.5px solid transparent;
+  background: linear-gradient(var(--surface), var(--surface)) padding-box, var(--ai-gradient) border-box;
+  color: var(--ink);
+}
+
+.question-options button:hover:not(:disabled) {
+  background: var(--ai-gradient) border-box;
+  color: #fff;
+}
+
+/* Starters, ideas and Style DNA tiles: a different colour wash on each */
+.starter,
+.idea-card,
+.occasion-card,
+.dna-item {
+  --tile: var(--blue);
+  border-color: color-mix(in srgb, var(--tile) 35%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--tile) 20%, transparent) 0%, rgba(255, 255, 255, 0.03) 70%);
+}
+
+:is(.starter, .idea-card, .occasion-card, .dna-item):nth-child(6n + 1) { --tile: var(--orange); }
+:is(.starter, .idea-card, .occasion-card, .dna-item):nth-child(6n + 2) { --tile: var(--pink); }
+:is(.starter, .idea-card, .occasion-card, .dna-item):nth-child(6n + 3) { --tile: var(--violet); }
+:is(.starter, .idea-card, .occasion-card, .dna-item):nth-child(6n + 4) { --tile: var(--blue); }
+:is(.starter, .idea-card, .occasion-card, .dna-item):nth-child(6n + 5) { --tile: var(--green); }
+:is(.starter, .idea-card, .occasion-card, .dna-item):nth-child(6n + 6) { --tile: #ffd166; }
+
+/* ---------- Motion: pages fade in, cards rise in, cards lift on hover ---------- */
+
+main > * {
+  animation: glassPage 0.35s ease backwards;
+}
+
+@keyframes glassPage {
+  from { opacity: 0; }
+}
+
+.starter,
+.feed-card,
+.idea-card,
+.occasion-card,
+.look-card,
+.feed-special,
+.product-card,
+.result-card,
+.wardrobe-card,
+.library-card,
+.taste-card,
+.dna-item,
+.insights-tile,
+.tryon-product {
+  animation: glassRise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* One after another, for the first few in a row or list */
+:is(.starter, .feed-card, .idea-card, .occasion-card, .look-card, .feed-special, .product-card, .result-card,
+  .wardrobe-card, .library-card, .taste-card, .dna-item, .insights-tile, .tryon-product):nth-child(2) { animation-delay: 0.06s; }
+:is(.starter, .feed-card, .idea-card, .occasion-card, .look-card, .feed-special, .product-card, .result-card,
+  .wardrobe-card, .library-card, .taste-card, .dna-item, .insights-tile, .tryon-product):nth-child(3) { animation-delay: 0.12s; }
+:is(.starter, .feed-card, .idea-card, .occasion-card, .look-card, .feed-special, .product-card, .result-card,
+  .wardrobe-card, .library-card, .taste-card, .dna-item, .insights-tile, .tryon-product):nth-child(4) { animation-delay: 0.18s; }
+:is(.starter, .feed-card, .idea-card, .occasion-card, .look-card, .feed-special, .product-card, .result-card,
+  .wardrobe-card, .library-card, .taste-card, .dna-item, .insights-tile, .tryon-product):nth-child(n + 5) { animation-delay: 0.24s; }
+
+@keyframes glassRise {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+}
+
+@media (hover: hover) {
+  :is(.starter, .feed-card, .idea-card, .occasion-card, .look-card, .product-card, .result-card, .wardrobe-card,
+    .library-card, .tryon-product):hover {
+    transform: translateY(-3px);
+    border-color: rgba(240, 69, 106, 0.55);
+    box-shadow: var(--glass-edge), 0 18px 40px -14px rgba(0, 0, 0, 0.7), 0 0 28px -8px rgba(240, 69, 106, 0.45);
+  }
+}
+
+/* People who ask their device for less motion get none of it */
+@media (prefers-reduced-motion: reduce) {
+  body::after,
+  main > *,
+  .app-nav-item.orb .app-nav-icon,
+  :is(.starter, .feed-card, .idea-card, .occasion-card, .look-card, .feed-special, .product-card, .result-card,
+    .wardrobe-card, .library-card, .taste-card, .dna-item, .insights-tile, .tryon-product) {
+    animation: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,26 @@
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+dist/
+
+# Local product catalog (rebuilt by sync_catalog.py)
+backend/data/
+*.db
+*.db-wal
+*.db-shm
+
+# Playwright MCP screenshots and traces from UI test runs
+.playwright-mcp/
+frontend/tmp-camera-test/
+
+# Logs
+*.log
